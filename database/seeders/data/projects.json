@@ -1,0 +1,51 @@
+[
+    {
+        "project_title": "Tailings Storage Facility Dam 4 Volumetric Scope",
+        "client_slug": "mimosa-mining-company",
+        "service_slug": "tsf-monitoring",
+        "status": "completed",
+        "initial_update": "Completed setting out operations and precise volumetric calculation profiles for TSF Dam 4."
+    },
+    {
+        "project_title": "Mimosa TSF4 Penstock Alignment Controls",
+        "client_slug": "mimosa-mining-company",
+        "service_slug": "tsf-monitoring",
+        "status": "completed",
+        "initial_update": "Executed precise verticality and horizontal engineering alignment controls on the TSF4 structural penstock system."
+    },
+    {
+        "project_title": "South Pit 2 Rehabilitation Aerial Controls",
+        "client_slug": "zimplats",
+        "service_slug": "engineering-surveys",
+        "status": "completed",
+        "initial_update": "Established localized survey ground control networks to backstop structural aerial mapping operations over the South Pit 2 complex."
+    },
+    {
+        "project_title": "Mt Pleasant Sumben Corridor Engineering Works",
+        "client_slug": "idbz",
+        "service_slug": "infrastructure-surveys",
+        "status": "active",
+        "initial_update": "Initiated comprehensive route alignment profiles and engineering setting-out parameters for both roadway networks and underground sewer infrastructure assets."
+    },
+    {
+        "project_title": "Marimba Project Legal Marker Reestablishment",
+        "client_slug": "idbz",
+        "service_slug": "beacon-relocation",
+        "status": "completed",
+        "initial_update": "Identified, reestablished, and verified boundary beacon positions for the IDBZ residential housing footprint."
+    },
+    {
+        "project_title": "Chipinge Gaza District Sewer Rehabilitation Project",
+        "client_slug": "undp",
+        "service_slug": "infrastructure-surveys",
+        "status": "completed",
+        "initial_update": "Conducted extensive topographical and structural gradient sewer engineering surveys to support municipal reticulation network rehabilitation."
+    },
+    {
+        "project_title": "Mazowe Retail Complex Structural Layout Control",
+        "client_slug": "mazowe-mall-group",
+        "service_slug": "engineering-surveys",
+        "status": "completed",
+        "initial_update": "Served as resident engineering surveyors managing alignment, horizontal layout, and precision height control lines for the retail plaza."
+    }
+]

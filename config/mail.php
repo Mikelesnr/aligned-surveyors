@@ -14,7 +14,7 @@ return [
     |
     */
 
-    'default' => env('MAIL_MAILER', 'smtp'),
+    'default' => env('MAIL_MAILER', 'google_api'),
 
     /*
     |--------------------------------------------------------------------------
@@ -95,6 +95,10 @@ return [
                 'postmark',
             ],
             'retry_after' => 60,
+        ],
+
+        'google_api' => [
+            'transport' => 'google_api',
         ],
 
     ],

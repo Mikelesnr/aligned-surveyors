@@ -26,10 +26,14 @@ export default function AuthenticatedLayout({ header, children }) {
                     <div className="flex h-16 justify-between">
                         <div className="flex">
                             <div className="flex shrink-0 items-center">
-                                <Link href="/">
-                                    <h1 className="text-3xl font-bold text-white">
-                                        VerdiSol Agro
-                                    </h1>
+                                <Link href="/" className="flex items-center">
+                                    <div className="bg-black/50 p-2 rounded-xl backdrop-blur-sm border border-white/10">
+                                        <img
+                                            src="/images/logo.png"
+                                            alt="Aligned Surveyors Logo"
+                                            className="h-12 w-auto md:h-16 transition-all duration-300"
+                                        />
+                                    </div>
                                 </Link>
                             </div>
 
@@ -92,7 +96,7 @@ export default function AuthenticatedLayout({ header, children }) {
                             <button
                                 onClick={() =>
                                     setShowingNavigationDropdown(
-                                        (previousState) => !previousState
+                                        (previousState) => !previousState,
                                     )
                                 }
                                 className="inline-flex items-center justify-center rounded-md p-2 text-gray-400 transition duration-150 ease-in-out hover:bg-gray-100 hover:text-gray-500 focus:bg-gray-100 focus:text-gray-500 focus:outline-none"

@@ -1,0 +1,32 @@
+[
+    {
+        "name": "Topcon Hiper II GPS Set",
+        "type": "GNSS Receiver",
+        "quantity": 1,
+        "description": "Dual-frequency satellite tracking system utilized for baseline establishment and high-accuracy kinematic surveying controls."
+    },
+    {
+        "name": "Hi-Target V30 Differential GPS",
+        "type": "GNSS Receiver",
+        "quantity": 1,
+        "description": "Rugged RTK system dedicated to localized ground positioning surveys."
+    },
+    {
+        "name": "Hi-Target V90 Differential GPS",
+        "type": "GNSS Receiver",
+        "quantity": 1,
+        "description": "Advanced multi-constellation RTK GNSS receiver optimizing tracking performance in challenging terrain environments."
+    },
+    {
+        "name": "Topcon Total Station",
+        "type": "Optical Instrument",
+        "quantity": 1,
+        "description": "High-precision electro-optical distance and angle measuring unit optimized for structural engineering layouts."
+    },
+    {
+        "name": "DJI Phantom 4 Pro Drone",
+        "type": "UAV / Quadcopter",
+        "quantity": 1,
+        "description": "Equipped with a 1-inch 20MP sensor for aerial photogrammetry mapping, drone image processing software suites, and digital elevation model generation."
+    }
+]

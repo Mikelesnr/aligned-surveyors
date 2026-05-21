@@ -1,0 +1,108 @@
+{
+    "company": {
+        "name": "Aligned Surveyors",
+        "tagline": "Impossible Is Impossible With Us",
+        "description": "An engineering Surveying Consultancy firm established in 2017, providing solutions in spatial and infrastructure development for property developers, planners, architects, civil engineers, and mines."
+    },
+    "why_choose_us": {
+        "title": "Why Choose Us",
+        "image": "images/precision-farming.jpg",
+        "benefits": [
+            {
+                "title": "Established Expertise",
+                "description": "Founded in 2017, we bring years of specialized experience in engineering surveying and spatial infrastructure development."
+            },
+            {
+                "title": "Professional Consultancy",
+                "description": "We provide expert advice and solutions tailored to property developers, architects, and civil engineers."
+            },
+            {
+                "title": "Cost-Effective Solutions",
+                "description": "Our focus is on client satisfaction by delivering high-quality, cost-effective, and timeous results for every project."
+            },
+            {
+                "title": "Comprehensive Capability",
+                "description": "Equipped for everything from Topographical and Mine surveys to complex road and sewer engineering."
+            },
+            {
+                "title": "Proven Track Record",
+                "description": "We have an established history of successful project delivery with major industry partners like IDBZ and Zimplats."
+            }
+        ]
+    },
+    "services": [
+        {
+            "title": "Topographical Surveys",
+            "description": "Using photogrammetry via orthophoto maps, total stations, and differential GPS."
+        },
+        {
+            "title": "Engineering Surveys",
+            "description": "Control at construction sites and monitoring structures for deformations."
+        },
+        {
+            "title": "Mine Surveys",
+            "description": "Pegging of claims, coordinate collection, and drawing of mine plans."
+        },
+        {
+            "title": "Land Development",
+            "description": "Advising on property development stages, permits, and consolidations."
+        }
+    ],
+    "featured_projects": [
+        {
+            "id": 1,
+            "title": "Mimosa TSF4 Expansion",
+            "description": "High-precision monitoring and TSF expansion surveying.",
+            "image": "/images/projects/mimosa.jpg"
+        },
+        {
+            "id": 2,
+            "title": "Mazowe Mall Development",
+            "description": "Topographical surveys and site set-out for commercial complex.",
+            "image": "/images/projects/mazowe.jpg"
+        },
+        {
+            "id": 3,
+            "title": "IDBZ Marimba Project",
+            "description": "Beacon relocation and infrastructure surveying.",
+            "image": "/images/projects/marimba.jpg"
+        },
+        {
+            "id": 4,
+            "title": "Swallowfield Road Networks",
+            "description": "Road setting out and sewer engineering surveys.",
+            "image": "/images/projects/swallowfield.jpg"
+        }
+    ],
+    "clients": [
+        {
+            "name": "Zimstructs Engineering",
+            "logo": "/images/clients/zimstructs.jpeg"
+        },
+        {
+            "name": "Fidelity Asset Management",
+            "logo": "/images/clients/fidelity(1).jpg"
+        },
+        {
+            "name": "Aspindale Projects",
+            "logo": "/images/clients/aspindale.jpg"
+        },
+        {
+            "name": "Gateway Construction",
+            "logo": "/images/clients/gateway.png"
+        },
+        {
+            "name": "IDBZ (Infrastructure Development Bank of Zimbabwe)",
+            "logo": "/images/clients/idbz.png"
+        },
+        { "name": "Zimplats", "logo": "/images/clients/zimplats.jpeg" },
+        {
+            "name": "Marange District Hospitals Program",
+            "logo": "/images/clients/marange.png"
+        },
+        {
+            "name": "Mimosa Mining Company",
+            "logo": "/images/clients/mimosa.jpeg"
+        }
+    ]
+}
