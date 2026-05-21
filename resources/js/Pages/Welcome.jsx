@@ -36,9 +36,11 @@ export default function Welcome({ auth }) {
                     <div className="container mx-auto flex justify-between items-center">
                         <Link href="/" className="flex items-center">
                             <div className="bg-black/50 p-2 rounded-xl backdrop-blur-sm border border-white/10">
-                                <h1 className="text-xl font-bold">
-                                    Aligned Surveyors
-                                </h1>
+                                <img
+                                    src="/images/alignedlogo.png"
+                                    alt="Aligned Surveyors"
+                                    className="h-8 w-auto object-contain"
+                                />
                             </div>
                         </Link>
                         <PublicNav auth={auth} />
@@ -47,7 +49,11 @@ export default function Welcome({ auth }) {
 
                 <main>
                     <section className="py-20 px-6 text-center animate-on-scroll">
-                        <h2 className="text-4xl font-bold mb-4">
+                        <h1 className="text-4xl font-bold mb-4">
+                            Aligned Surveyors
+                        </h1>
+                        <br></br>
+                        <h2 className="text-3xl font-bold mb-4">
                             {data.company.tagline}
                         </h2>
                         <p className="text-gray-300 max-w-2xl mx-auto">
