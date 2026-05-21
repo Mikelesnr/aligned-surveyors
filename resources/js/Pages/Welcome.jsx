@@ -203,6 +203,36 @@ export default function Welcome({ auth }) {
                             </Swiper>
                         </div>
                     </section>
+
+                    {/* Transparent/Glassmorphism CTA Section */}
+                    <section className="py-16 px-6">
+                        <div className="container mx-auto max-w-4xl">
+                            <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-3xl p-10 text-center animate-on-scroll">
+                                <h3 className="text-3xl font-bold text-white mb-4">
+                                    Ready to Start Your Next Project?
+                                </h3>
+                                <p className="text-gray-300 mb-8 max-w-xl mx-auto">
+                                    Join our list of industry partners and
+                                    experience precision surveying tailored to
+                                    your infrastructure needs.
+                                </p>
+                                <div className="flex justify-center gap-4">
+                                    <a
+                                        href="/contact"
+                                        className="bg-green-600 text-white font-semibold py-3 px-8 rounded-full shadow-lg hover:bg-green-500 transition-all duration-300"
+                                    >
+                                        Get a Quote
+                                    </a>
+                                    <a
+                                        href="tel:+263773970507"
+                                        className="border border-white/20 text-white font-semibold py-3 px-8 rounded-full hover:bg-white/10 transition-all duration-300"
+                                    >
+                                        Call Us
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
                 </main>
             </div>
         </Layout>
