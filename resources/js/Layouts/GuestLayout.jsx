@@ -7,21 +7,21 @@ export default function GuestLayout({ children }) {
         <div
             className="min-h-screen bg-black bg-opacity-50 flex flex-col"
             style={{
-                backgroundImage: "url('/images/main-hero.jpg')",
+                backgroundImage: "url('/images/mainbg.jpg')",
                 backgroundSize: "cover",
                 backgroundPosition: "center",
             }}
         >
             {/* Header / Logo */}
-            <div className="flex shrink-0 items-center">
+            <div className="bg-gray/50 flex shrink-0 items-center">
                 <Link href="/" className="flex items-center">
                     {/* Changed p-2 to p-1.5 for tighter fit; added shrink-0 to container */}
-                    <div className="bg-black/50 p-1.5 rounded-xl backdrop-blur-sm border border-white/10 shrink-0">
+                    <div className="p-1.5 rounded-xl backdrop-blur-sm border border-white/10 shrink-0">
                         <img
-                            src="/images/logo.png"
+                            src="/images/logo2.png"
                             alt="Aligned Surveyors Logo"
                             // Kept h-12, but consider reducing if it still overlaps
-                            className="h-10 md:h-12 w-auto object-contain transition-all duration-300"
+                            className="bg-black/90 rounded-xl h-10 md:h-12 w-auto object-contain transition-all duration-300"
                         />
                     </div>
                 </Link>
