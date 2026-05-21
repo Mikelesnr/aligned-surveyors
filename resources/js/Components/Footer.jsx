@@ -26,14 +26,6 @@ export default function Footer() {
                     <ul className="space-y-2 text-sm text-gray-400">
                         <li>
                             <a
-                                href="#services"
-                                className="hover:text-green-500 transition-colors"
-                            >
-                                Services
-                            </a>
-                        </li>
-                        <li>
-                            <a
                                 href="#why-choose-us"
                                 className="hover:text-green-500 transition-colors"
                             >
@@ -47,14 +39,6 @@ export default function Footer() {
                             >
                                 Contact
                             </a>
-                        </li>
-                        <li>
-                            <Link
-                                href={route("dashboard")}
-                                className="hover:text-green-500 transition-colors"
-                            >
-                                Dashboard
-                            </Link>
                         </li>
                     </ul>
                 </div>

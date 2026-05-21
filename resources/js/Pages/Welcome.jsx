@@ -3,7 +3,7 @@ import GuestLayout from "@/Layouts/GuestLayout";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import PublicNav from "@/Components/PublicNav";
 import { Head, Link } from "@inertiajs/react";
-import data from "@/Pages/Data/welcome.json";
+import data from "@/Pages/Data/Welcome.json";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import { useState } from "react";
