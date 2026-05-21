@@ -1,0 +1,32 @@
+[
+    {
+        "name": "Mimosa Mining Company",
+        "slug": "mimosa-mining-company",
+        "is_visible": true
+    },
+    {
+        "name": "Zimplats",
+        "slug": "zimplats",
+        "is_visible": true
+    },
+    {
+        "name": "Infrastructure Development Bank of Zimbabwe (IDBZ)",
+        "slug": "idbz",
+        "is_visible": true
+    },
+    {
+        "name": "United Nations Development Programme (UNDP)",
+        "slug": "undp",
+        "is_visible": true
+    },
+    {
+        "name": "Mazowe Mall Construction Group",
+        "slug": "mazowe-mall-group",
+        "is_visible": true
+    },
+    {
+        "name": "Instant Tar Asphalt Co.",
+        "slug": "instant-tar-asphalt",
+        "is_visible": true
+    }
+]

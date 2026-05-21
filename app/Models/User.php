@@ -2,15 +2,18 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use App\Models\ProjectUpdate;
+use App\Models\Message;
+use App\Models\Group;
 use App\Enums\UserRole;
 
 class User extends Authenticatable
 {
-    /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable;
 
     /**
@@ -23,6 +26,7 @@ class User extends Authenticatable
         'email',
         'password',
         'role',
+        'is_active',
         'email_verified_at',
     ];
 
@@ -47,6 +51,42 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
             'role' => UserRole::class,
+            'is_active' => 'boolean',
         ];
+    }
+
+    /**
+     * Helper check for administrative permissions.
+     */
+    public function isAdmin(): bool
+    {
+        return $this->role === UserRole::Admin;
+    }
+
+    // --- Domain & Chat Engine Relationships ---
+
+    public function projectUpdates(): HasMany
+    {
+        return $this->hasMany(ProjectUpdate::class, 'user_id');
+    }
+
+    public function messages(): HasMany
+    {
+        return $this->hasMany(Message::class, 'user_id');
+    }
+
+    public function createdGroups(): HasMany
+    {
+        return $this->hasMany(Group::class, 'creator_id');
+    }
+
+    public function groupMemberships(): BelongsToMany
+    {
+        return $this->belongsToMany(Group::class, 'group_members', 'user_id', 'group_id')->withTimestamps();
+    }
+
+    public function managedGroups(): BelongsToMany
+    {
+        return $this->belongsToMany(Group::class, 'group_admins', 'user_id', 'group_id')->withTimestamps();
     }
 }

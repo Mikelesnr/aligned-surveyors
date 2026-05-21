@@ -14,10 +14,14 @@ export default function GuestLayout({ children }) {
         >
             {/* Header / Logo */}
             <div className="px-6 py-4 bg-black bg-opacity-50 shadow">
-                <Link href="/">
-                    <h1 className="text-3xl font-bold text-white">
-                        VerdiSol Agro
-                    </h1>
+                <Link href="/" className="flex items-center">
+                    <div className="bg-black/50 p-2 rounded-xl backdrop-blur-sm border border-white/10">
+                        <img
+                            src="/images/logo.png"
+                            alt="Aligned Surveyors Logo"
+                            className="h-12 w-auto md:h-16 transition-all duration-300"
+                        />
+                    </div>
                 </Link>
             </div>
 

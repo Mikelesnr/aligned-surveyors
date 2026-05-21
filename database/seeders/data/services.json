@@ -1,0 +1,37 @@
+[
+    {
+        "title": "Topographical Surveys",
+        "slug": "topographical-surveys",
+        "description": "High-accuracy land configuration mapping using drone photogrammetry for orthophoto generation, total stations, differential GPS receivers, and precise benchmark placement."
+    },
+    {
+        "title": "Tailings Storage Facility Monitoring",
+        "slug": "tsf-monitoring",
+        "description": "Specialized geometric construction tracking for mining slime dams, including structural alignment, verticality verification for penstocks, volume calculations, and drainage work monitoring."
+    },
+    {
+        "title": "Beacon Relocation and Reestablishment",
+        "slug": "beacon-relocation",
+        "description": "Precise boundary definition, boundary reestablishment, and legal marker relocation to resolve land disputes and clarify property lines prior to physical structural development."
+    },
+    {
+        "title": "Engineering Surveys",
+        "slug": "engineering-surveys",
+        "description": "On-site engineering control for construction layouts, structural deformation monitoring, and 3D terrain modeling for open pits, roadways, dams, and municipal dump sites."
+    },
+    {
+        "title": "Land Development Consultancy",
+        "slug": "land-development-consultancy",
+        "description": "Strategic advisory on property development phases, layout designs, and processing administrative approvals for land subdivisions or consolidations."
+    },
+    {
+        "title": "Sewer, Road, and Water Surveys",
+        "slug": "infrastructure-surveys",
+        "description": "Route engineering, corridor alignment tracking, and physical setting-out operations for highways, railway networks, electrical power lines, and municipal reticulation utilities."
+    },
+    {
+        "title": "Mine Surveys",
+        "slug": "mine-surveys",
+        "description": "Surface and underground mining claim pegging, statutory mine plan drafting, and precise collection of localized mining block coordinates for Ministry of Mines cadastre updates."
+    }
+]
