@@ -1,11 +1,11 @@
 {
-    "name": "Verdisol",
-    "short_name": "Verdisol",
-    "description": "Agro consulting platform",
+    "name": "Aligned Surveyors",
+    "short_name": "Aligned",
+    "description": "Surveying consultancy firm providing spatial and infrastructure solutions for property developers, planners, architects, civil engineers, and mines.",
     "start_url": "/",
     "display": "standalone",
-    "background_color": "#ffffff",
-    "theme_color": "#4CAF50",
+    "background_color": "#111827",
+    "theme_color": "#10B981",
     "orientation": "portrait",
     "icons": [
         {
