@@ -44,12 +44,13 @@ export default function Welcome({ auth }) {
                 <header className="py-6 px-6">
                     <div className="container mx-auto flex justify-between items-center">
                         <Link href="/" className="flex items-center">
-                            <div className="bg-black/50 p-2 rounded-xl backdrop-blur-sm border border-white/10">
-                                <img
-                                    src="/images/alignedlogo.png"
-                                    alt="Aligned Surveyors"
-                                    className="h-8 w-auto object-contain"
-                                />
+                            <div className="flex items-center space-x-3">
+                                <span className="text-xl font-bold tracking-tight uppercase">
+                                    Aligned{" "}
+                                    <span className="text-green-500">
+                                        Surveyors
+                                    </span>
+                                </span>
                             </div>
                         </Link>
                         <PublicNav auth={auth} />
