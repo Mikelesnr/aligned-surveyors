@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import GuestLayout from "@/Layouts/GuestLayout";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import PublicNav from "@/Components/PublicNav";
-import { Head } from "@inertiajs/react";
+import { Head, Link } from "@inertiajs/react";
 import SectionHeader from "@/Components/SectionHeader";
 import aboutData from "@/Pages/Data/About.json"; // Imported team data clean from JSON
 
@@ -34,12 +34,16 @@ export default function About({ auth, projects }) {
             <div className="text-white min-h-screen bg-black/40">
                 {/* Header Navigation Section */}
                 <header className="container mx-auto px-6 py-6 flex justify-between items-center relative z-50">
-                    <div className="flex items-center space-x-3">
-                        <span className="text-xl font-bold tracking-tight uppercase">
-                            Aligned{" "}
-                            <span className="text-green-500">Surveyors</span>
-                        </span>
-                    </div>
+                    <Link href="/" className="flex items-center">
+                        <div className="flex items-center space-x-3">
+                            <span className="text-xl font-bold tracking-tight uppercase">
+                                Aligned{" "}
+                                <span className="text-green-500">
+                                    Surveyors
+                                </span>
+                            </span>
+                        </div>
+                    </Link>
                     <PublicNav auth={auth} />
                 </header>
 

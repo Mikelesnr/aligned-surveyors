@@ -1,23 +1,22 @@
-import Checkbox from '@/Components/Checkbox';
-import InputError from '@/Components/InputError';
-import InputLabel from '@/Components/InputLabel';
-import PrimaryButton from '@/Components/PrimaryButton';
-import TextInput from '@/Components/TextInput';
-import GuestLayout from '@/Layouts/GuestLayout';
-import { Head, Link, useForm } from '@inertiajs/react';
+import Checkbox from "@/Components/Checkbox";
+import InputError from "@/Components/InputError";
+import InputLabel from "@/Components/InputLabel";
+import PrimaryButton from "@/Components/PrimaryButton";
+import TextInput from "@/Components/TextInput";
+import GuestLayout from "@/Layouts/GuestLayout";
+import { Head, Link, useForm } from "@inertiajs/react";
 
 export default function Login({ status, canResetPassword }) {
     const { data, setData, post, processing, errors, reset } = useForm({
-        email: '',
-        password: '',
+        email: "",
+        password: "",
         remember: false,
     });
 
     const submit = (e) => {
         e.preventDefault();
-
-        post(route('login'), {
-            onFinish: () => reset('password'),
+        post(route("login"), {
+            onFinish: () => reset("password"),
         });
     };
 
@@ -25,76 +24,118 @@ export default function Login({ status, canResetPassword }) {
         <GuestLayout>
             <Head title="Log in" />
 
-            {status && (
-                <div className="mb-4 text-sm font-medium text-green-600">
-                    {status}
-                </div>
-            )}
+            <div className="min-h-screen flex flex-col justify-center items-center px-6 relative bg-black/40 text-white selection:bg-green-500 selection:text-black">
+                {/* Accent background illumination */}
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-green-500/5 blur-[120px] pointer-events-none rounded-full" />
 
-            <form onSubmit={submit}>
-                <div>
-                    <InputLabel htmlFor="email" value="Email" />
+                <div className="w-full sm:max-w-md bg-gradient-to-b from-zinc-900/50 to-zinc-950/70 backdrop-blur-md border border-white/10 p-8 rounded-2xl shadow-2xl relative group">
+                    <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-green-500/20 to-transparent rounded-t-2xl" />
 
-                    <TextInput
-                        id="email"
-                        type="email"
-                        name="email"
-                        value={data.email}
-                        className="mt-1 block w-full"
-                        autoComplete="username"
-                        isFocused={true}
-                        onChange={(e) => setData('email', e.target.value)}
-                    />
-
-                    <InputError message={errors.email} className="mt-2" />
-                </div>
-
-                <div className="mt-4">
-                    <InputLabel htmlFor="password" value="Password" />
-
-                    <TextInput
-                        id="password"
-                        type="password"
-                        name="password"
-                        value={data.password}
-                        className="mt-1 block w-full"
-                        autoComplete="current-password"
-                        onChange={(e) => setData('password', e.target.value)}
-                    />
-
-                    <InputError message={errors.password} className="mt-2" />
-                </div>
-
-                <div className="mt-4 block">
-                    <label className="flex items-center">
-                        <Checkbox
-                            name="remember"
-                            checked={data.remember}
-                            onChange={(e) =>
-                                setData('remember', e.target.checked)
-                            }
-                        />
-                        <span className="ms-2 text-sm text-gray-600">
-                            Remember me
-                        </span>
-                    </label>
-                </div>
-
-                <div className="mt-4 flex items-center justify-end">
-                    {canResetPassword && (
+                    {/* Return to Home Anchor */}
+                    <div className="mb-6 flex justify-between items-center border-b border-white/5 pb-4">
                         <Link
-                            href={route('password.request')}
-                            className="rounded-md text-sm text-gray-600 underline hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                            href={route("welcome")}
+                            className="text-xs font-mono text-zinc-400 hover:text-green-400 transition-colors flex items-center"
                         >
-                            Forgot your password?
+                            <span>← Back to Home</span>
                         </Link>
+                        <span className="text-xs uppercase tracking-widest font-bold text-zinc-500">
+                            Secure Access
+                        </span>
+                    </div>
+
+                    {status && (
+                        <div className="mb-4 text-sm font-medium text-green-400 p-3 bg-green-500/10 border border-green-500/20 rounded-xl">
+                            {status}
+                        </div>
                     )}
 
-                    <PrimaryButton className="ms-4" disabled={processing}>
-                        Log in
-                    </PrimaryButton>
+                    <form onSubmit={submit} className="space-y-5">
+                        <div>
+                            <InputLabel
+                                htmlFor="email"
+                                value="Email Address"
+                                className="text-zinc-300 font-medium mb-1.5"
+                            />
+                            <TextInput
+                                id="email"
+                                type="email"
+                                name="email"
+                                value={data.email}
+                                className="mt-1 block w-full bg-black/40 border-white/10 text-white rounded-xl focus:border-green-500 focus:ring-green-500/20 transition-all placeholder-zinc-700"
+                                placeholder="name@domain.com"
+                                autoComplete="username"
+                                isFocused={true}
+                                onChange={(e) =>
+                                    setData("email", e.target.value)
+                                }
+                            />
+                            <InputError
+                                message={errors.email}
+                                className="mt-2 text-red-400 text-xs"
+                            />
+                        </div>
+
+                        <div>
+                            <InputLabel
+                                htmlFor="password"
+                                value="Password"
+                                className="text-zinc-300 font-medium mb-1.5"
+                            />
+                            <TextInput
+                                id="password"
+                                type="password"
+                                name="password"
+                                value={data.password}
+                                className="mt-1 block w-full bg-black/40 border-white/10 text-white rounded-xl focus:border-green-500 focus:ring-green-500/20 transition-all placeholder-zinc-700"
+                                placeholder="••••••••"
+                                autoComplete="current-password"
+                                onChange={(e) =>
+                                    setData("password", e.target.value)
+                                }
+                            />
+                            <InputError
+                                message={errors.password}
+                                className="mt-2 text-red-400 text-xs"
+                            />
+                        </div>
+
+                        <div className="block">
+                            <label className="flex items-center cursor-pointer select-none">
+                                <Checkbox
+                                    name="remember"
+                                    checked={data.remember}
+                                    className="rounded border-white/10 bg-black/40 text-green-600 focus:ring-green-500/20 focus:ring-offset-0"
+                                    onChange={(e) =>
+                                        setData("remember", e.target.checked)
+                                    }
+                                />
+                                <span className="ms-2 text-sm text-zinc-400 hover:text-zinc-300 transition-colors">
+                                    Remember my session
+                                </span>
+                            </label>
+                        </div>
+
+                        <div className="flex items-center justify-between pt-2 border-t border-white/5">
+                            {canResetPassword && (
+                                <Link
+                                    href={route("password.request")}
+                                    className="text-xs text-zinc-400 hover:text-green-400 transition-colors underline underline-offset-4"
+                                >
+                                    Forgot your password?
+                                </Link>
+                            )}
+
+                            <PrimaryButton
+                                className="ms-4 bg-green-600 hover:bg-green-500 text-white font-semibold py-2.5 px-6 rounded-xl shadow-lg shadow-green-900/20 transition-all"
+                                disabled={processing}
+                            >
+                                Log in
+                            </PrimaryButton>
+                        </div>
+                    </form>
                 </div>
-            </form>
+            </div>
         </GuestLayout>
     );
 }
