@@ -5,6 +5,7 @@ use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\ChatbotController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -33,3 +34,8 @@ Route::get('/contact', function () {
 Route::get('/about', [ProjectController::class, 'index'])->name('about');
 
 Route::post('/contact', [ContactController::class, 'store'])->name('contact.submit');
+
+// Public Guest Chatbot Routing Engine
+Route::post('/chatbot/message', [ChatbotController::class, 'message'])
+    ->middleware('throttle:30,1')
+    ->name('chatbot.message');
