@@ -6,10 +6,19 @@ import { Head, Link } from "@inertiajs/react";
 import data from "@/Pages/Data/welcome.json";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
+import { useState } from "react";
+import Modal from "@/Components/Modal";
+import SectionHeader from "@/Components/SectionHeader";
 import "swiper/css";
 
 export default function Welcome({ auth }) {
     const Layout = auth?.user ? AuthenticatedLayout : GuestLayout;
+    const [selectedServiceTitle, setSelectedServiceTitle] = useState(null);
+
+    // Find the current active service object from the JSON dataset
+    const activeService = data.services.find(
+        (s) => s.title === selectedServiceTitle,
+    );
 
     useEffect(() => {
         const observer = new IntersectionObserver(
@@ -61,28 +70,182 @@ export default function Welcome({ auth }) {
                         </p>
                     </section>
 
-                    {/* Services Section (Transparent) */}
-                    <section className="py-20 px-6 animate-on-scroll">
-                        <div className="container mx-auto">
-                            <h3 className="text-3xl font-bold mb-10 text-center">
-                                Our Services
-                            </h3>
-                            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                                {data.services.map((s, i) => (
+                    {/* Services Section (Premium Glassmorphism) */}
+                    <section
+                        id="services"
+                        className="py-24 px-6 relative overflow-hidden bg-black/20"
+                    >
+                        {/* Ambient subtle background glow */}
+                        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-green-500/5 blur-[120px] pointer-events-none rounded-full" />
+
+                        <div className="container mx-auto max-w-6xl relative z-10">
+                            {/* Section Header */}
+                            <div className="text-center mb-16">
+                                {/* Clean Component Import */}
+                                <SectionHeader
+                                    tagline="Expertise"
+                                    title="Our Services"
+                                />
+                            </div>
+
+                            {/* Services Grid looping cleanly over welcome.json data */}
+                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                                {data.services.map((service, i) => (
                                     <div
                                         key={i}
-                                        className="bg-gray-800 p-6 rounded-xl border border-gray-700"
+                                        className="group relative bg-zinc-900/40 backdrop-blur-md p-8 rounded-2xl border border-white/5 hover:border-green-500/30 transition-all duration-300 flex flex-col justify-between"
                                     >
-                                        <h4 className="font-bold text-lg mb-2">
-                                            {s.title}
-                                        </h4>
-                                        <p className="text-gray-400 text-sm">
-                                            {s.description}
-                                        </p>
+                                        {/* Accent line animation overlay on hover */}
+                                        <div className="absolute inset-0 bg-gradient-to-br from-green-500/0 via-green-500/0 to-green-500/[0.01] opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl pointer-events-none" />
+                                        <div className="w-0 h-[2px] bg-green-500 absolute top-0 left-8 group-hover:w-1/3 transition-all duration-300 rounded-full" />
+
+                                        <div>
+                                            <div className="text-xs font-mono text-zinc-600 group-hover:text-green-500/50 transition-colors duration-300 mb-2">
+                                                0{i + 1}
+                                            </div>
+                                            <h4 className="font-bold text-xl mb-3 text-gray-100">
+                                                {service.title}
+                                            </h4>
+                                            <p className="text-gray-400 text-sm leading-relaxed mb-6">
+                                                {service.description}
+                                            </p>
+                                        </div>
+
+                                        <button
+                                            onClick={() =>
+                                                setSelectedServiceTitle(
+                                                    service.title,
+                                                )
+                                            }
+                                            className="inline-flex items-center text-xs font-semibold text-green-400 hover:text-green-300 transition-colors cursor-pointer w-fit"
+                                        >
+                                            <span>Explore Details</span>
+                                            <svg
+                                                className="w-3 h-3 ml-1.5 transform group-hover:translate-x-1 transition-transform"
+                                                fill="none"
+                                                stroke="currentColor"
+                                                viewBox="0 0 24 24"
+                                                xmlns="http://www.w3.org/2000/svg"
+                                            >
+                                                <path
+                                                    strokeLinecap="round"
+                                                    strokeLinejoin="round"
+                                                    strokeWidth={2}
+                                                    d="M9 5l7 7-7 7"
+                                                />
+                                            </svg>
+                                        </button>
                                     </div>
                                 ))}
                             </div>
                         </div>
+
+                        {/* Premium Sourced Glassmorphism Information Pop-up Modal */}
+                        <Modal
+                            show={!!selectedServiceTitle}
+                            onClose={() => setSelectedServiceTitle(null)}
+                            maxWidth="lg"
+                        >
+                            {activeService && (
+                                <div className="relative">
+                                    {/* Upper right structural close icon button */}
+                                    <button
+                                        onClick={() =>
+                                            setSelectedServiceTitle(null)
+                                        }
+                                        className="absolute -top-2 -right-2 text-zinc-400 hover:text-white p-2 transition-colors focus:outline-none"
+                                    >
+                                        <svg
+                                            className="w-5 h-5"
+                                            fill="none"
+                                            stroke="currentColor"
+                                            viewBox="0 0 24 24"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                        >
+                                            <path
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                                strokeWidth={2}
+                                                d="M6 18L18 6M6 6l12 12"
+                                            />
+                                        </svg>
+                                    </button>
+
+                                    <div className="mb-6">
+                                        <span className="text-green-500 text-xs font-mono uppercase tracking-widest">
+                                            Capabilities Suite
+                                        </span>
+                                        <h3 className="text-2xl font-bold text-white mt-1 border-b border-white/10 pb-3">
+                                            {activeService.title}
+                                        </h3>
+                                    </div>
+
+                                    {/* Extended details scope mapping from JSON array structures */}
+                                    {activeService.details &&
+                                        activeService.details.length > 0 && (
+                                            <div className="mb-6">
+                                                <h4 className="text-sm font-semibold text-zinc-300 uppercase tracking-wider mb-3">
+                                                    Service Scope
+                                                </h4>
+                                                <ul className="space-y-2.5">
+                                                    {activeService.details.map(
+                                                        (detail, idx) => (
+                                                            <li
+                                                                key={idx}
+                                                                className="flex items-start text-sm text-zinc-400 leading-relaxed"
+                                                            >
+                                                                <span className="text-green-500 mr-2 mt-1 text-xs">
+                                                                    ◆
+                                                                </span>
+                                                                <span>
+                                                                    {detail}
+                                                                </span>
+                                                            </li>
+                                                        ),
+                                                    )}
+                                                </ul>
+                                            </div>
+                                        )}
+
+                                    {/* Verified real-world tracking references pills block */}
+                                    {activeService.projects &&
+                                        activeService.projects.length > 0 && (
+                                            <div className="bg-black/40 border border-white/5 rounded-xl p-4">
+                                                <h4 className="text-xs font-semibold text-green-400 uppercase tracking-widest mb-2 flex items-center">
+                                                    <svg
+                                                        className="w-3.5 h-3.5 mr-1.5"
+                                                        fill="none"
+                                                        stroke="currentColor"
+                                                        viewBox="0 0 24 24"
+                                                        xmlns="http://www.w3.org/2000/svg"
+                                                    >
+                                                        <path
+                                                            strokeLinecap="round"
+                                                            strokeLinejoin="round"
+                                                            strokeWidth={2}
+                                                            d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                                                        />
+                                                    </svg>
+                                                    Verified Project Record
+                                                    References
+                                                </h4>
+                                                <div className="flex flex-wrap gap-2 mt-2">
+                                                    {activeService.projects.map(
+                                                        (proj, idx) => (
+                                                            <span
+                                                                key={idx}
+                                                                className="bg-zinc-800/80 border border-white/5 text-xs px-3 py-1.5 rounded-md text-zinc-300 font-medium"
+                                                            >
+                                                                {proj}
+                                                            </span>
+                                                        ),
+                                                    )}
+                                                </div>
+                                            </div>
+                                        )}
+                                </div>
+                            )}
+                        </Modal>
                     </section>
 
                     {/* Why Choose Us Section */}
@@ -91,9 +254,11 @@ export default function Welcome({ auth }) {
                         className="bg-gray-900 py-20 px-6"
                     >
                         <div className="container mx-auto">
-                            <h3 className="text-3xl font-bold text-center mb-12 animate-on-scroll text-white">
-                                {data.why_choose_us.title}
-                            </h3>
+                            {/* Clean Component Import */}
+                            <SectionHeader
+                                tagline="Our Values"
+                                title="Why Choose Us"
+                            />
                             <div className="grid md:grid-cols-2 gap-8 lg:gap-12 items-center">
                                 {/* Points Side */}
                                 <div className="space-y-6">
@@ -134,9 +299,11 @@ export default function Welcome({ auth }) {
                     {/* Featured Projects (Transparent) */}
                     <section className="py-20 px-6 animate-on-scroll">
                         <div className="container mx-auto">
-                            <h3 className="text-3xl font-bold mb-10 text-center">
-                                Featured Projects
-                            </h3>
+                            {/* Clean Component Import */}
+                            <SectionHeader
+                                tagline="Case Studies"
+                                title="Featured Projects"
+                            />
                             <div className="grid md:grid-cols-4 gap-6">
                                 {data.featured_projects.map((p) => (
                                     <div
@@ -165,9 +332,11 @@ export default function Welcome({ auth }) {
                     {/* Clients Slider (Gray Background) */}
                     <section className="py-20 px-6 bg-gray-900 animate-on-scroll">
                         <div className="container mx-auto text-center">
-                            <h3 className="text-3xl font-bold mb-10 text-white">
-                                Our Clients
-                            </h3>
+                            {/* Clean Component Import for Clients Section */}
+                            <SectionHeader
+                                tagline="Trust & Partnerships"
+                                title="Our Clients"
+                            />
 
                             <Swiper
                                 modules={[Autoplay]}
@@ -214,9 +383,10 @@ export default function Welcome({ auth }) {
                     <section className="py-16 px-6">
                         <div className="container mx-auto max-w-4xl">
                             <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-3xl p-10 text-center animate-on-scroll">
-                                <h3 className="text-3xl font-bold text-white mb-4">
-                                    Ready to Start Your Next Project?
-                                </h3>
+                                <SectionHeader
+                                    tagline="Get in Touch"
+                                    title="Ready to Start Your Next Project?"
+                                />
                                 <p className="text-gray-300 mb-8 max-w-xl mx-auto">
                                     Join our list of industry partners and
                                     experience precision surveying tailored to

@@ -33,19 +33,78 @@
     "services": [
         {
             "title": "Topographical Surveys",
-            "description": "Using photogrammetry via orthophoto maps, total stations, and differential GPS."
+            "description": "Using photogrammetry via orthophoto maps, total stations, and differential GPS.",
+            "details": [
+                "Photogrammetry modeling via precision drone or orthophoto arrays.",
+                "High-accuracy point tracking with Total Stations & Differential GPS networks.",
+                "Benchmark validation and foundational control layouts."
+            ],
+            "projects": [
+                "Tynwald Lot 10 (Harare)",
+                "Magunje University Compound",
+                "Mutare Westgate Development"
+            ]
         },
         {
             "title": "Engineering Surveys",
-            "description": "Control at construction sites and monitoring structures for deformations."
+            "description": "Control at construction sites and monitoring structures for deformations.",
+            "details": [
+                "Precision construction-grade engineering control grid placements.",
+                "Structural deformation, lean, and down-axis displacement monitoring.",
+                "3D mapping profiles for dump sites, structural dam surfaces, and road basins."
+            ],
+            "projects": [
+                "Zimplats South Pit 2 Aerial Control Rehabilitation",
+                "Manna Safaris Layout Mapping"
+            ]
+        },
+        {
+            "title": "Tailings Storage Facility Construction Monitoring",
+            "description": "High-precision volumetric profiling, structural deformation checks, and penstock layout arrays.",
+            "details": [
+                "Comprehensive slimes dam dimension setting out and containment monitoring.",
+                "Volumetric earthwork estimations and extraction calculation modeling.",
+                "Penstock verticality alignment tracking and deep pipe/drain construction maps."
+            ],
+            "projects": [
+                "Mimosa TSF4 Dam Expansion & Penstock Alignment Tracking"
+            ]
+        },
+        {
+            "title": "Beacon Relocation or Reestablishment",
+            "description": "Resolving property lines and mapping boundaries clearly ahead of civil development layout execution.",
+            "details": [
+                "Property boundaries identification before initial development investments.",
+                "Cadastral validation to settle land encroachments or parcel disputes.",
+                "Replacement of degraded boundary nodes matching legacy title registry archives."
+            ],
+            "projects": [
+                "IDBZ Marimba Project Relocation Plan",
+                "Tynwald Stands 1207-1208 Boundary Audit"
+            ]
+        },
+        {
+            "title": "Sewer, Road and Water Surveys",
+            "description": "Route surveys and setting out infrastructure networks for residential developments and city pipelines.",
+            "details": [
+                "Route profiling maps for complex roads, railway tracks, or electrical main grids.",
+                "Subsurface wastewater drainage network alignments and gradient mapping.",
+                "As-built civil layout setting out checks."
+            ],
+            "projects": [
+                "Swallowfield Development Civil Networks (Norton)",
+                "UNDP Gaza Sewer Rehabilitation (Chipinge)"
+            ]
         },
         {
             "title": "Mine Surveys",
-            "description": "Pegging of claims, coordinate collection, and drawing of mine plans."
-        },
-        {
-            "title": "Land Development",
-            "description": "Advising on property development stages, permits, and consolidations."
+            "description": "Pegging of claims, coordinate collection, and drawing of mine plans.",
+            "details": [
+                "Cadastral boundary pegging of mining concessions and mineral asset claims.",
+                "Coordinate mapping aligned with Ministry of Mines new digital cadastre systems.",
+                "Detailed underground and open-pit operational mining layout maps."
+            ],
+            "projects": ["Pomona Volumetric Mine Surveying Assignments"]
         }
     ],
     "featured_projects": [
@@ -95,7 +154,10 @@
             "name": "IDBZ (Infrastructure Development Bank of Zimbabwe)",
             "logo": "/images/clients/idbz.png"
         },
-        { "name": "Zimplats", "logo": "/images/clients/zimplats.jpeg" },
+        {
+            "name": "Zimplats",
+            "logo": "/images/clients/zimplats.jpeg"
+        },
         {
             "name": "Marange District Hospitals Program",
             "logo": "/images/clients/marange.png"
