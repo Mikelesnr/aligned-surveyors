@@ -13,13 +13,15 @@ export default function GuestLayout({ children }) {
             }}
         >
             {/* Header / Logo */}
-            <div className="px-6 py-4 bg-black bg-opacity-50 shadow">
+            <div className="flex shrink-0 items-center">
                 <Link href="/" className="flex items-center">
-                    <div className="bg-black/50 p-2 rounded-xl backdrop-blur-sm border border-white/10">
+                    {/* Changed p-2 to p-1.5 for tighter fit; added shrink-0 to container */}
+                    <div className="bg-black/50 p-1.5 rounded-xl backdrop-blur-sm border border-white/10 shrink-0">
                         <img
                             src="/images/logo.png"
                             alt="Aligned Surveyors Logo"
-                            className="h-12 w-auto md:h-16 transition-all duration-300"
+                            // Kept h-12, but consider reducing if it still overlaps
+                            className="h-10 md:h-12 w-auto object-contain transition-all duration-300"
                         />
                     </div>
                 </Link>
