@@ -1,6 +1,7 @@
 // import ApplicationLogo from "@/Components/ApplicationLogo";
 import { Link } from "@inertiajs/react";
 import Footer from "@/Components/Footer";
+import FloatingChatbot from "@/Components/FloatingChatbot";
 
 export default function GuestLayout({ children }) {
     return (
@@ -30,6 +31,9 @@ export default function GuestLayout({ children }) {
             {/* Main Content */}
             <main className="flex-grow w-full">{children}</main>
             <Footer />
+
+            {/* Global Survey Bot Widget for Public Guests */}
+            <FloatingChatbot />
         </div>
     );
 }

@@ -5,6 +5,7 @@ import ResponsiveNavLink from "@/Components/ResponsiveNavLink";
 import { Link, usePage } from "@inertiajs/react";
 import { useState } from "react";
 import Footer from "@/Components/Footer";
+import FloatingChatbot from "@/Components/FloatingChatbot";
 
 export default function AuthenticatedLayout({ header, children }) {
     const user = usePage().props.auth.user;
@@ -188,6 +189,9 @@ export default function AuthenticatedLayout({ header, children }) {
 
             <main className="bg-black bg-opacity-50">{children}</main>
             <Footer />
+
+            {/* Global Survey Bot Widget for Public Guests */}
+            <FloatingChatbot />
         </div>
     );
 }
