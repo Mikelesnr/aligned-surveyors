@@ -6,8 +6,7 @@ export default function PublicNav({ auth }) {
 
     const navLinks = [
         { name: "Home", href: route("welcome") },
-        { name: "Services", href: route("services.index") },
-        { name: "Our Work", href: route("projects.index") },
+        { name: "About Us", href: route("about") },
         { name: "Contact", href: route("contact") },
     ];
 

@@ -30,4 +30,6 @@ Route::get('/contact', function () {
     return Inertia::render('Public/Contact');
 })->name('contact');
 
+Route::get('/about', [ProjectController::class, 'index'])->name('about');
+
 Route::post('/contact', [ContactController::class, 'store'])->name('contact.submit');

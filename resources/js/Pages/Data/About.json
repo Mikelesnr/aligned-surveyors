@@ -1,0 +1,51 @@
+{
+    "company": {
+        "name": "Aligned Surveyors",
+        "tagline": "Impossible Is Impossible With Us",
+        "description": "Established in 2017, Aligned Surveyors is a premier engineering surveying consultancy firm registered with the Zimbabwe Institute of Geomatics (ZIG) and the ZICT division of the Zimbabwe Institute of Engineers (ZIE). We specialize in delivering high-precision spatial solutions, infrastructure planning, and field arrays tailored to the demanding requirements of property developers, civil engineers, architects, and mine operators throughout the region."
+    },
+    "team": [
+        {
+            "name": "Mr. K.K. Nyandoro",
+            "role": "Principal Engineering Surveyor",
+            "credentials": "University of Zimbabwe (UZ)",
+            "bio": "A pioneering professional trained at the University of Zimbabwe with active field tenure dating back to 2012. Offers more than 8 years of specialized regional experience executing both simple and highly complex topographical, infrastructural, and engineering arrays across Zimbabwe and the SADC region (including Namibia).",
+            "image": "/images/team/kk_nyandoro.jpg"
+        },
+        {
+            "name": "Mr. H. Mutandi",
+            "role": "Engineering Surveyor",
+            "credentials": "Midlands State University (MSU)",
+            "bio": "Holds a BSc Honors Degree in Surveying and Geomatics from MSU. Brings 9 years of diverse, multi-cultural operational experience managing technical field survey deployments across Zimbabwe, Zambia, and Sudan.",
+            "image": "/images/team/h_mutandi.jpg"
+        },
+        {
+            "name": "Mr. R. Nyoni",
+            "role": "Engineering Surveyor",
+            "credentials": "Midlands State University (MSU)",
+            "bio": "Graduated with a BSc Honors Degree in Surveying and Geomatics from MSU in 2016. Leverages 6 years of focused technical expertise inside the road and building construction industries, supported by an advanced knowledge of top-tier hardware systems and South African spatial architectures.",
+            "image": "/images/team/r_nyoni.jpg"
+        },
+        {
+            "name": "Mr. O.S. Mtetwa",
+            "role": "Engineering Surveyor",
+            "credentials": "University of Zimbabwe (UZ)",
+            "bio": "A 2016 graduate with a BSc in Surveying and Geoinformatics from UZ. Accumulates 5 years of field operational experience across South Africa, Namibia, and Zimbabwe, with specific mastery in engineering, volumetric computation, topographical mappings, and modern UAV/Drone imagery workflows.",
+            "image": "/images/team/os_mtetwa.jpg"
+        },
+        {
+            "name": "Mr. T. Gondo",
+            "role": "Geomatics Surveyor",
+            "credentials": "University of Zimbabwe (UZ)",
+            "bio": "A dedicated Geomatics surveyor holding a BSc Honors in Surveying and Geoinformatics from UZ (2016). Offers 6 years of industry expertise across bulk earthworks, reticulation, road engineering, and GIS mapping systems, while finalizing an MSc in Geomatics Engineering at the University of Zimbabwe.",
+            "image": "/images/team/t_gondo.jpg"
+        },
+        {
+            "name": "Ms. B.T. Nemaramba",
+            "role": "Mine Surveyor",
+            "credentials": "ZSM & Bindura University",
+            "bio": "An energetic, highly motivated mining professional holding a National Diploma from the Zimbabwe School of Mines along with a BSc Honors from Bindura University. Highly skilled in managing intensive underground and open-pit mine development layouts, statistical data controls, and technical research applications.",
+            "image": "/images/team/bt_nemaramba.jpg"
+        }
+    ]
+}

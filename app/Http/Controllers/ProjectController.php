@@ -18,7 +18,7 @@ class ProjectController extends Controller
             ->latest()
             ->get();
 
-        return Inertia::render('Public/Projects/Index', [
+        return Inertia::render('Public/About', [
             'projects' => $projects,
         ]);
     }
