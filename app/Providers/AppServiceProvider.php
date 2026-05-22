@@ -30,9 +30,9 @@ class AppServiceProvider extends ServiceProvider
         // Intercept and extend mail manager with the custom google_api driver
         Mail::extend('google_api', function () {
             return new GoogleApiTransport(
-                config('services.google.client_id'),
-                config('services.google.client_secret'),
-                config('services.google.refresh_token')
+                config('services.google.client_id') ?? '',
+                config('services.google.client_secret') ?? '',
+                config('services.google.refresh_token') ?? ''
             );
         });
 
@@ -45,8 +45,10 @@ class AppServiceProvider extends ServiceProvider
         Gate::define('isAdmin', function (User $user) {
             return $user->role === UserRole::Admin;
         });
-        Gate::define('isStaff', function (User $user) {
-            return $user->role === UserRole::Staff;
+
+        //Shared Gate: True if the user is an admin OR a staff operator
+        Gate::define('isPersonnel', function (User $user) {
+            return in_array($user->role, [UserRole::Admin, UserRole::Staff]);
         });
     }
 }
