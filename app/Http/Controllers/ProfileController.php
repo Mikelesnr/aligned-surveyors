@@ -41,15 +41,22 @@ class ProfileController extends Controller
     }
 
     /**
-     * Delete the user's account.
+     * Delete the user's account with system lock protection.
      */
     public function destroy(Request $request): RedirectResponse
     {
+        $user = $request->user();
+
+        // Fail-safe: Prevent administrators from deleting themselves from the profile screen
+        if ($user->role === 'admin') {
+            return redirect()->back()->withErrors([
+                'user_deletion' => 'Security Exception: Administrative accounts cannot be destroyed from the profile terminal. At least one administrator must remain active.'
+            ]);
+        }
+
         $request->validate([
             'password' => ['required', 'current_password'],
         ]);
-
-        $user = $request->user();
 
         Auth::logout();
 
