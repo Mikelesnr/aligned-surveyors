@@ -1,33 +1,67 @@
-# Stage 1: Base PHP + Composer
-FROM serversideup/php:8.4-fpm-nginx AS laravel-app
-USER root
+# Stage 1: Build frontend assets
+FROM node:20-slim AS frontend
 
-# Install Node.js + npm for frontend build
-RUN apt-get update && apt-get install -y nodejs npm
-
-WORKDIR /var/www/html
-
-# Copy dependency files first (layer caching)
-COPY composer.json composer.lock ./
-COPY package.json package-lock.json ./
-
-# Install PHP dependencies
-RUN composer install --no-dev --optimize-autoloader
-
-# Install JS dependencies
+WORKDIR /app
+COPY package.json vite.config.js tailwind.config.js postcss.config.cjs ./
+COPY resources resources
 RUN npm install && npm run build
 
-# Copy application code
+# Stage 2: Laravel backend
+FROM php:8.2-fpm-alpine AS backend
+
+# Install system dependencies
+RUN apk add --no-cache \
+    nginx \
+    curl \
+    zip \
+    unzip \
+    git \
+    libpng-dev \
+    libjpeg-turbo-dev \
+    libwebp-dev \
+    libxpm-dev \
+    freetype-dev \
+    oniguruma-dev \
+    icu-dev \
+    bash \
+    shadow \
+    postgresql-dev \
+    nodejs \
+    npm \
+    supervisor
+
+# Install PHP extensions
+RUN docker-php-ext-install pdo pdo_pgsql mbstring exif pcntl bcmath gd intl
+
+# Set working directory
+WORKDIR /var/www/html
+
+# Copy Laravel app
 COPY . .
 
-# Ensure correct permissions
-RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
+# ✅ Ensure Laravel cache and storage paths exist and are writable
+RUN mkdir -p bootstrap/cache \
+    storage/framework/views \
+    storage/framework/sessions \
+    storage/framework/cache \
+    && chmod -R 775 bootstrap/cache storage \
+    && chown -R www-data:www-data bootstrap/cache storage
 
-# Expose port for Reverb WebSocket server
-EXPOSE 
+# ✅ Copy only the built frontend assets (public/build)
+COPY --from=frontend /app/public/build ./public/build
 
-# Copy custom Nginx config from /docker/ into container
-COPY docker/nginx.conf /etc/nginx/conf.d/default.conf
+# Install Composer
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+RUN composer install --no-dev --optimize-autoloader
 
-# Start PHP-FPM + Nginx
-CMD ["/docker/supervisord", "-c", "/etc/supervisor/supervisord.conf"]
+# Set permissions
+RUN chown -R www-data:www-data /var/www/html
+
+# Copy Nginx config
+COPY docker/nginx.conf /etc/nginx/nginx.conf
+
+# Copy Supervisor config
+COPY docker/supervisord.conf /etc/supervisord.conf
+
+EXPOSE 80
+CMD ["/usr/bin/supervisord", "-c", "/etc/supervisord.conf"]
