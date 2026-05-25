@@ -20,6 +20,7 @@ class Group extends Model
     protected $fillable = [
         'name',
         'creator_id',
+        'is_private',
     ];
 
     /**

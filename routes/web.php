@@ -48,3 +48,7 @@ require __DIR__ . '/auth.php';
 
 // 5. Import the clean staff operations routing block
 require __DIR__ . '/staff.php';
+
+// 6. Import the standalone workspace communications real-time engine
+require __DIR__ . '/chat.php';
+// require __DIR__ . '/channels.php';
