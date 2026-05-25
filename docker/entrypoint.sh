@@ -1,6 +1,9 @@
 #!/bin/sh
-# Render assigns a PORT via env var; use it to rewrite nginx.conf
-sed -i "s/listen 80;/listen ${PORT:-8080};/" /etc/nginx/nginx.conf
+# Use the PORT provided by Render
+PORT="${PORT:-8080}"
 
-# Start supervisord
-/usr/bin/supervisord -c /etc/supervisord.conf
+# Update Nginx listen port
+sed -i "s/listen 80;/listen $PORT;/g" /etc/nginx/nginx.conf
+
+# Start supervisord using the explicit config file path
+exec /usr/bin/supervisord -c /etc/supervisord.conf
