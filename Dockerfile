@@ -30,4 +30,10 @@ COPY entrypoint.sh /usr/local/bin/entrypoint.sh
 RUN chmod +x /usr/local/bin/entrypoint.sh
 
 EXPOSE 8080
+
+# Add these lines before CMD
+RUN mkdir -p /var/log/nginx /var/lib/nginx /var/log/php82 \
+    && chown -R www-data:www-data /var/log/nginx /var/lib/nginx /var/log/php82 \
+    && touch /var/run/nginx.pid && chown www-data:www-data /var/run/nginx.pid
+    
 CMD ["/usr/local/bin/entrypoint.sh"]

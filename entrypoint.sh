@@ -1,5 +1,7 @@
 #!/bin/sh
-# Replace $PORT in nginx.conf with the actual port Render provides
+# Inject the dynamic Render PORT into Nginx config
 sed -i "s/\${PORT}/$PORT/g" /etc/nginx/nginx.conf
-# Start supervisord
-/usr/bin/supervisord -c /etc/supervisord.conf
+
+# Start supervisor in a way that forces output to stdout
+echo "Starting Supervisord..."
+/usr/bin/supervisord -n -c /etc/supervisord.conf
