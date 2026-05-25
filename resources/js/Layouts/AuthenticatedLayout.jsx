@@ -40,12 +40,35 @@ export default function AuthenticatedLayout({ header, children }) {
                                 </Link>
                             </div>
 
+                            {/* Primary Navigation Links */}
                             <div className="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                                 <NavLink
                                     href={route("dashboard")}
                                     active={route().current("dashboard")}
                                 >
                                     Dashboard
+                                </NavLink>
+
+                                <NavLink
+                                    href={route("chat.index")}
+                                    active={route().current("chat.index")}
+                                >
+                                    <span
+                                        className={`me-2 inline-block h-2 w-2 rounded-full shrink-0 ${
+                                            route().current("chat.index")
+                                                ? "bg-green-500 animate-pulse"
+                                                : "bg-gray-400"
+                                        }`}
+                                    />
+                                    Chat
+                                </NavLink>
+
+                                {/* ADD THIS NEW LINK */}
+                                <NavLink
+                                    href={route("groups.index")}
+                                    active={route().current("groups.*")}
+                                >
+                                    Groups
                                 </NavLink>
                             </div>
                         </div>
@@ -144,6 +167,8 @@ export default function AuthenticatedLayout({ header, children }) {
                         " sm:hidden"
                     }
                 >
+                    // resources/js/Layouts/AuthenticatedLayout.jsx (Mobile
+                    Section)
                     <div className="space-y-1 pb-3 pt-2">
                         <ResponsiveNavLink
                             href={route("dashboard")}
@@ -151,8 +176,21 @@ export default function AuthenticatedLayout({ header, children }) {
                         >
                             Dashboard
                         </ResponsiveNavLink>
-                    </div>
 
+                        <ResponsiveNavLink
+                            href={route("groups.index")}
+                            active={route().current("groups.*")}
+                        >
+                            Groups
+                        </ResponsiveNavLink>
+
+                        <ResponsiveNavLink
+                            href={route("chat.index")}
+                            active={route().current("chat.index")}
+                        >
+                            Chat
+                        </ResponsiveNavLink>
+                    </div>
                     <div className="border-t border-gray-200 pb-1 pt-4">
                         <div className="px-4">
                             <div className="text-base font-medium text-gray-800">

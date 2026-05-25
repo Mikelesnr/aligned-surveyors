@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('groups', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->string('name');
+            $table->boolean('is_private')->default(false);
             $table->foreignId('creator_id')->constrained('users')->onDelete('RESTRICT');
             $table->timestamps();
         });
