@@ -18,21 +18,17 @@ WORKDIR /var/www/html
 # Copy application files
 COPY . .
 
-# Create cache/storage directories and set ownership to www-data immediately
-RUN mkdir -p bootstrap/cache storage/framework/views storage/framework/sessions storage/framework/cache \
-    && chown -R www-data:www-data /var/www/html
-
 # Copy frontend assets
 COPY --from=frontend /app/public/build ./public/build
 
-# Install Composer dependencies
+# Install Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 RUN composer install --no-dev --optimize-autoloader
 
-# FINAL PERMISSION HANDOFF
-# Ensure everything in the web root belongs to www-data
-RUN chown -R www-data:www-data /var/www/html && \
-    chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
+# Setup Permissions - DO THIS AFTER ALL COPIES
+RUN mkdir -p storage/framework/views storage/framework/sessions storage/framework/cache bootstrap/cache \
+    && chown -R www-data:www-data /var/www/html \
+    && chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
 
 # Copy configurations
 COPY docker/nginx.conf /etc/nginx/nginx.conf
