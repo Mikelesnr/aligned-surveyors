@@ -1,7 +1,15 @@
 #!/bin/sh
-# Inject the dynamic Render PORT into Nginx config
+# Check if PORT is set, default to 8080 if not
+: "${PORT:=8080}"
+
+echo "Configuring Nginx to listen on port: $PORT"
+
+# Replace ${PORT} with actual value
 sed -i "s/\${PORT}/$PORT/g" /etc/nginx/nginx.conf
 
-# Start supervisor in a way that forces output to stdout
-echo "Starting Supervisord..."
-/usr/bin/supervisord -n -c /etc/supervisord.conf
+# Verify replacement
+echo "Nginx config set to:"
+grep "listen" /etc/nginx/nginx.conf
+
+# Start supervisor
+exec /usr/bin/supervisord -n -c /etc/supervisord.conf
