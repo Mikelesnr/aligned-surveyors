@@ -6,6 +6,7 @@ use App\Models\ProjectUpdate;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Auth;
 
 class ProjectUpdateController extends Controller
 {
@@ -24,7 +25,7 @@ class ProjectUpdateController extends Controller
 
         ProjectUpdate::create([
             'project_id' => $validated['project_id'],
-            'user_id' => auth()->id(),
+            'user_id' => Auth::id(),
             'update_text' => $validated['update_text'], // Matches model fillable baseline configuration
         ]);
 

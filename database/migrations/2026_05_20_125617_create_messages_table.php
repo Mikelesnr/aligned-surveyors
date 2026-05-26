@@ -18,6 +18,7 @@ return new class extends Migration
             $table->uuid('conversation_id')->nullable();
             $table->uuid('group_id')->nullable();
             $table->text('message_text');
+            $table->boolean('is_meeting_alert')->default(false);
             $table->timestamp('created_at')->useCurrent(); // Default high speed append timestamp
 
             $table->foreign('conversation_id')->references('id')->on('conversations')->onDelete('CASCADE');

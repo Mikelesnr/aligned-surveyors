@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Gate;
 use Inertia\Inertia;
 use Inertia\Response;
 use Illuminate\Validation\Rules\Enum;
+use Illuminate\Support\Facades\Auth;
 
 class AdminUserController extends Controller
 {
@@ -60,7 +61,7 @@ class AdminUserController extends Controller
         Gate::authorize('isAdmin');
 
         // Fail-safe: Block any attempt by an administrator to process updates on themselves here
-        if ($user->id === auth()->id()) {
+        if ($user->id === Auth::id()) {
             return redirect()->back()->withErrors([
                 'role' => 'Security Exception: You cannot modify your own administrative access group from this pane.'
             ]);
@@ -97,7 +98,7 @@ class AdminUserController extends Controller
         Gate::authorize('isAdmin');
 
         // Safeguard to prevent an logged-in admin from deleting their own active account session
-        if (auth()->id() === $user->id) {
+        if (Auth::id() === $user->id) {
             return redirect()->back()->withErrors(['error' => 'Self-deletion is prohibited. If you need to restrict this account, have another administrator modify your role matrix.']);
         }
 

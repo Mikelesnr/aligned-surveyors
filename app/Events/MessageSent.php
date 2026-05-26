@@ -23,12 +23,15 @@ class MessageSent implements ShouldBroadcastNow
         $payload = [
             'id' => $this->message->id,
             'message_text' => $this->message->message_text,
-            'created_at' => $this->message->created_at->toIso8601String(),
+            'created_at' => $this->message->created_at
+                ? $this->message->created_at->toIso8601String()
+                : now()->toIso8601String(),
             'sender' => [
                 'id' => $this->message->sender->id,
                 'name' => $this->message->sender->name,
                 'role' => $this->message->sender->role->value,
             ],
+            'is_meeting_alert' => $this->message->is_meeting_alert,
         ];
 
         // Conditionally include only the relevant ID

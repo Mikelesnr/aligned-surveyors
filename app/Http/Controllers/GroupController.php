@@ -7,14 +7,16 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use Inertia\Inertia;
+use App\Events\MessageSent;
+use App\Models\Message;
+use Illuminate\Support\Str;
 
 class GroupController extends Controller
 {
     // Fetch all groups the authenticated user is a member of
     public function index()
     {
-        $user = auth()->user();
+        $user = Auth::user();
 
         // Fetch the groups the user is a member of
         $myGroups = $user->groupMemberships()->get();
@@ -41,7 +43,7 @@ class GroupController extends Controller
         }
 
         // syncWithoutDetaching prevents errors if they are already a member
-        $group->members()->syncWithoutDetaching([auth()->id()]);
+        $group->members()->syncWithoutDetaching([Auth::id()]);
 
         return back()->with('success', 'Joined group successfully.');
     }
@@ -61,11 +63,11 @@ class GroupController extends Controller
             $group = Group::create([
                 'name' => $validated['name'],
                 'is_private' => $validated['is_private'] ?? false,
-                'creator_id' => auth()->id(),
+                'creator_id' => Auth::id(),
             ]);
 
-            $group->members()->attach(auth()->id());
-            $group->admins()->attach(auth()->id());
+            $group->members()->attach(Auth::id());
+            $group->admins()->attach(Auth::id());
         });
 
         return back()->with('success', 'Group created successfully!');
@@ -74,7 +76,7 @@ class GroupController extends Controller
     // App\Http\Controllers\GroupController.php
     public function show(Group $group)
     {
-        $user = auth()->user();
+        $user = Auth::user();
 
         // Authorization: Ensure user is a member
         if (!$group->members()->where('user_id', $user->id)->exists()) {
@@ -84,7 +86,7 @@ class GroupController extends Controller
         // 1. Check if the current user is a group admin
         $isGroupAdmin = DB::table('group_admins')
             ->where('group_id', $group->id)
-            ->where('user_id', auth()->id())
+            ->where('user_id', Auth::id())
             ->exists();
 
         // Use the method defined in your Group model
@@ -114,9 +116,9 @@ class GroupController extends Controller
         $group = Group::findOrFail($groupId);
 
         // 2. Security Check: Verify admin status in the group_admins table
-        $isGroupAdmin = \DB::table('group_admins')
+        $isGroupAdmin = DB::table('group_admins')
             ->where('group_id', $group->id)
-            ->where('user_id', auth()->id())
+            ->where('user_id', Auth::id())
             ->exists();
 
         if (!$isGroupAdmin) {
@@ -128,5 +130,33 @@ class GroupController extends Controller
         $group->members()->syncWithoutDetaching([$request->user_id]);
 
         return response()->json(['message' => 'Member added successfully']);
+    }
+
+    // App/Http/Controllers/GroupController.php
+
+    public function startMeeting(Request $request, Group $group)
+    {
+        $meetingId = (string) Str::uuid();
+        $localMeetingUrl = route('groups.meeting.show', [
+            'group' => $group->id,
+            'meetingId' => $meetingId
+        ]);
+
+        // Store only the URL string in the message_text
+        $message = Message::create([
+            'user_id'      => Auth::id(),
+            'group_id'     => $group->id,
+            'message_text' => $localMeetingUrl,
+            'is_meeting_alert' => true,
+            'created_at'   => now(),
+        ]);
+
+        $message->refresh();
+        $message->load('sender:id,name,role');
+
+        // Broadcast the raw URL
+        broadcast(new MessageSent($message))->toOthers();
+
+        return response()->json(['meetingId' => $meetingId]);
     }
 }
