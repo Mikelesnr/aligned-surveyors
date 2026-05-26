@@ -8,7 +8,7 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    environment: vps
+    environment: vps # <--- THIS IS REQUIRED FOR ENVIRONMENT SECRETS
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -23,7 +23,7 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           push: true
-          # Ensure your Docker Hub username is correctly referenced here
+          # We are using the secret directly here
           tags: ${{ secrets.DOCKER_USERNAME }}/laravel-app:latest
 
       - name: Deploy to VPS via SSH
