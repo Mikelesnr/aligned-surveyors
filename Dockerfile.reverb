@@ -1,13 +1,35 @@
+# Stage: Laravel backend (Reverb Only)
 FROM php:8.2-fpm-alpine
 
-# Only install what Reverb needs
-RUN apk add --no-cache linux-headers
-RUN docker-php-ext-install sockets
+# Install system dependencies (including linux-headers for sockets)
+RUN apk add --no-cache \
+    curl zip unzip git bash shadow \
+    postgresql-dev oniguruma-dev libpng-dev \
+    libjpeg-turbo-dev freetype-dev icu-dev \
+    supervisor linux-headers
+
+# Install PHP extensions
+RUN docker-php-ext-install pdo pdo_pgsql mbstring exif pcntl bcmath gd intl sockets
 
 WORKDIR /var/www/html
+
+# Copy application files
 COPY . .
+
+# Install Composer
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 RUN composer install --no-dev --optimize-autoloader
 
-# Run Reverb directly as the main process
-EXPOSE 8081
-CMD ["php", "artisan", "reverb:start", "--host=0.0.0.0", "--port=8081"]
+# Set permissions
+RUN mkdir -p storage/framework/sessions storage/framework/cache bootstrap/cache \
+    && chown -R www-data:www-data /var/www/html \
+    && chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
+
+# Copy the Reverb-specific Supervisor config
+COPY docker/reverb.conf /etc/supervisord.conf
+
+# Since these are separate services, you can use 80 or 8080
+EXPOSE 80
+
+# Run via Supervisor
+CMD ["/usr/bin/supervisord", "-c", "/etc/supervisord.conf"]
