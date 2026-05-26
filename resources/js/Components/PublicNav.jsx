@@ -58,7 +58,7 @@ export default function PublicNav({ auth }) {
                     </Link>
                 ) : (
                     <Link href={route("login")} className="hover:underline">
-                        Log in
+                        Staff Portal
                     </Link>
                 )}
             </nav>

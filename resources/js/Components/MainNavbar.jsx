@@ -59,7 +59,7 @@ export default function MainNavbar() {
                         href={route("login")}
                         className="bg-green-600 px-4 py-2 rounded-full hover:bg-green-500 transition"
                     >
-                        Log in
+                        Staff Portal
                     </Link>
                 )}
             </div>
