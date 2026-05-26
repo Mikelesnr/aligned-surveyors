@@ -25,6 +25,7 @@ class Message extends Model
         'group_id',
         'message_text',
         'created_at',
+        'is_meeting_alert',
     ];
 
     /**
@@ -36,6 +37,7 @@ class Message extends Model
     {
         return [
             'created_at' => 'datetime',
+            'is_meeting_alert' => 'boolean',
         ];
     }
 

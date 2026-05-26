@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Conversation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Auth;
 
 class ConversationController extends Controller
 {
@@ -13,7 +14,7 @@ class ConversationController extends Controller
      */
     public function index()
     {
-        $authId = auth()->id();
+        $authId = Auth::id();
         return response()->json(
             \App\Models\Conversation::where('user_one_id', $authId)
                 ->orWhere('user_two_id', $authId)
@@ -33,7 +34,7 @@ class ConversationController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate(['recipient_id' => 'required|exists:users,id']);
-        $authId = auth()->id();
+        $authId = Auth::id();
 
         // Create the record. Let the database unique constraint handle duplicates.
         return response()->json(Conversation::create([
@@ -50,7 +51,7 @@ class ConversationController extends Controller
     {
         $conversation = Conversation::findOrFail($id);
 
-        if ($conversation->user_one_id !== auth()->id() && $conversation->user_two_id !== auth()->id()) {
+        if ($conversation->user_one_id !== Auth::id() && $conversation->user_two_id !== Auth::id()) {
             return response()->json(['message' => 'Unauthorized'], 403);
         }
 

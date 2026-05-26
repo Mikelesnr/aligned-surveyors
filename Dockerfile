@@ -40,6 +40,6 @@ RUN mkdir -p storage/framework/views storage/framework/sessions storage/framewor
     && chown -R www-data:www-data /var/www/html \
     && chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
 
-EXPOSE 8080
+EXPOSE 8080 8081
 
 CMD ["/usr/local/bin/entrypoint.sh"]

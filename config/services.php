@@ -51,4 +51,11 @@ return [
         'password' => env('ADMIN_PASSWORD'),
     ],
 
+    // config/services.php
+    'jitsi' => [
+        'app_id' => env('JITSI_APP_ID'),
+        'private_key' => env('JITSI_PRIVATE_KEY'), // The string or file path
+        'key_id' => env('JITSI_KEY_ID'),
+    ],
+
 ];

@@ -8,6 +8,7 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Mail;
 use App\Domains\Auth\Mail\GoogleApiTransport;
+use App\Services\JitsiService;
 use App\Models\User;
 use App\Enums\UserRole;
 // use GMP;
@@ -19,7 +20,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        // Registering JitsiService as a singleton to be used across the app
+        $this->app->singleton(JitsiService::class, function ($app) {
+            return new JitsiService();
+        });
     }
 
     /**

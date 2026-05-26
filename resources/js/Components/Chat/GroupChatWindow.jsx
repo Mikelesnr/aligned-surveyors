@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef, useMemo } from "react";
 import axios from "axios";
 import ChatBubble from "./ChatBubble";
 import Modal from "@/Components/Modal";
+import MeetingAction from "@/Components/Chat/MeetingAction";
 
 const USER_COLORS = [
     { bg: "bg-blue-100", text: "text-blue-900" },
@@ -23,6 +24,12 @@ export default function GroupChatWindow({
     const [showAddModal, setShowAddModal] = useState(false);
     const [selectedUserId, setSelectedUserId] = useState("");
     const scrollRef = useRef(null);
+
+    // Ensure isPersonnel is defined as before
+    const isPersonnel = useMemo(
+        () => ["admin", "staff"].includes(auth.user.role),
+        [auth.user.role],
+    );
 
     // Map sender IDs to colors using the 'members' relationship
     const userColorMap = useMemo(() => {
@@ -103,26 +110,34 @@ export default function GroupChatWindow({
             {/* Header */}
             <div className="p-6 border-b flex justify-between items-center">
                 <h2 className="text-2xl font-bold">#{group.name}</h2>
-                {isGroupAdmin && (
-                    <button
-                        onClick={() => setShowAddModal(true)}
-                        className="bg-blue-600 text-white px-4 py-2 rounded-lg text-sm hover:bg-blue-700"
-                    >
-                        + Add Member
-                    </button>
-                )}
+                <div className="flex gap-2">
+                    {/* Render the component */}
+                    <MeetingAction group={group} isPersonnel={isPersonnel} />
+
+                    {isGroupAdmin && (
+                        <button
+                            onClick={() => setShowAddModal(true)}
+                            className="bg-blue-600 text-white px-4 py-2 rounded-lg text-sm hover:bg-blue-700"
+                        >
+                            + Add Member
+                        </button>
+                    )}
+                </div>
             </div>
 
             {/* Message Stream */}
             <div className="flex-1 overflow-y-auto p-6 space-y-4 bg-gray-50">
                 {messages.map((msg) => {
-                    // Logic to match the sender ID exactly as you defined for your bubbles
                     const senderId = msg.sender?.id;
                     const isMe = parseInt(senderId) === parseInt(auth.user.id);
                     const colors = userColorMap[senderId] || {
-                        bg: "bg-gray-200",
-                        text: "text-gray-900",
+                        bg: "bg-red-900",
+                        text: "text-white",
                     };
+
+                    // Detect if this is a meeting alert message
+                    const isMeetingAlert = !!msg.is_meeting_alert;
+                    console.log({ isMeetingAlert, msg });
 
                     return (
                         <ChatBubble
@@ -132,7 +147,25 @@ export default function GroupChatWindow({
                             bubbleColor={isMe ? "bg-green-700" : colors.bg}
                             textColor={isMe ? "text-white" : colors.text}
                             showName={!isMe}
-                        />
+                        >
+                            {/* Conditionally render HTML if it's an alert, otherwise plain text */}
+                            {isMeetingAlert ? (
+                                <div className="p-3 bg-blue-50 border-l-4 border-blue-500 rounded-md">
+                                    <p className="font-semibold text-blue-900">
+                                        Video meeting started.
+                                    </p>
+                                    <a
+                                        href={msg.message_text}
+                                        target="_blank"
+                                        className="inline-block mt-2 text-blue-600 underline font-bold"
+                                    >
+                                        Join Meeting
+                                    </a>
+                                </div>
+                            ) : (
+                                <p>{msg.message_text}</p>
+                            )}
+                        </ChatBubble>
                     );
                 })}
                 <div ref={scrollRef} />

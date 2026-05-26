@@ -7,6 +7,7 @@ use App\Models\Message;
 use App\Models\Conversation;
 use App\Events\MessageSent;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ChatController extends Controller
 {
@@ -20,13 +21,13 @@ class ChatController extends Controller
 
         if ($type === 'group') {
             $group = Group::findOrFail($id);
-            if (!$group->members()->where('user_id', auth()->id())->exists()) {
+            if (!$group->members()->where('user_id', Auth::id())->exists()) {
                 abort(403, 'Unauthorized channel stream access.');
             }
             $messages = $query->where('group_id', $id)->get();
         } else {
             $conversation = Conversation::findOrFail($id);
-            if ($conversation->user_one_id !== auth()->id() && $conversation->user_two_id !== auth()->id()) {
+            if ($conversation->user_one_id !== Auth::id() && $conversation->user_two_id !== Auth::id()) {
                 abort(403, 'Unauthorized peer line access.');
             }
             $messages = $query->where('conversation_id', $id)->get();
@@ -47,7 +48,7 @@ class ChatController extends Controller
         ]);
 
         $message = Message::create([
-            'user_id'         => auth()->id(),
+            'user_id'         => Auth::id(),
             'conversation_id' => $validated['conversation_id'],
             'message_text'    => $validated['message_text'],
             'created_at'      => now(),
@@ -61,15 +62,11 @@ class ChatController extends Controller
         return response()->json($message);
     }
 
-    // App\Http\Controllers\ChatController.php
-
-    // App\Http\Controllers\ChatController.php
-
     public function sendGroupMessage(Request $request, string $groupId)
     {
         // 1. Validate membership to prevent unauthorized posting
         $group = \App\Models\Group::findOrFail($groupId);
-        if (!$group->members()->where('user_id', auth()->id())->exists()) {
+        if (!$group->members()->where('user_id', Auth::id())->exists()) {
             abort(403, 'You are not a member of this group.');
         }
 
@@ -80,7 +77,7 @@ class ChatController extends Controller
 
         // 3. Create the message
         $message = Message::create([
-            'user_id'      => auth()->id(),
+            'user_id'      => Auth::id(),
             'group_id'     => $groupId,
             'message_text' => $validated['message_text'],
             'created_at'   => now(),

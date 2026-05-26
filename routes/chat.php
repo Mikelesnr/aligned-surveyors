@@ -3,6 +3,8 @@
 use App\Http\Controllers\ChatController;
 use App\Http\Controllers\ConversationController;
 use App\Http\Controllers\GroupController;
+use App\Http\Controllers\MeetingController;
+use App\Http\Controllers\JitsiTokenController;
 use App\Models\User;
 use App\Models\Conversation;
 use Illuminate\Support\Facades\Route;
@@ -15,6 +17,11 @@ use Inertia\Inertia;
 */
 
 Route::middleware(['auth', 'verified'])->group(function () {
+
+    // Ensure this route exists and is accessible
+    Route::get('/jitsi-token', [JitsiTokenController::class, 'generate'])
+        ->name('jitsi.token')
+        ->middleware('auth');
 
     Route::get('/api/chat/conversations', [ConversationController::class, 'index'])->name('chat.conversation.index');
     Route::post('/api/chat/conversations', [ConversationController::class, 'store'])->name('chat.conversation.store');
@@ -34,6 +41,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
     // Add this dedicated route for group messaging
     Route::post('/workspace/communications/groups/{group}/messages', [ChatController::class, 'sendGroupMessage'])
         ->name('groups.messages.store');
+
+    // start and show meeting routes for group video conferencing
+    Route::get('/workspace/communications/groups/{group}/meeting/{meetingId}', [MeetingController::class, 'show'])
+        ->name('groups.meeting.show');
 
     // Independent workspace console renderer
     Route::get('/workspace/communications', function () {
@@ -68,4 +79,12 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/api/chat/history/{type}/{id}', [ChatController::class, 'fetchMessages'])->name('chat.history');
     Route::post('/api/chat/transmit', [ChatController::class, 'sendMessage'])->name('chat.transmit');
     Route::post('/workspace/communications/group', [ChatController::class, 'startGroup'])->name('chat.group.start');
+});
+
+Route::middleware(['auth', 'verified', 'can:isPersonnel'])->group(function () {
+    // Only staff/admin can access these routes
+    Route::post('/workspace/communications/groups/{group}/meeting', [GroupController::class, 'startMeeting'])
+        ->name('groups.meeting.start');
+
+    // Your other sensitive group routes...
 });
