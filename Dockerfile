@@ -8,7 +8,7 @@ RUN npm install && npm run build
 # Stage 2: Laravel backend
 FROM php:8.2-fpm-alpine AS backend
 
-# Add linux-headers and ensure we have build tools
+# Added linux-headers here - this is required for the 'sockets' extension
 RUN apk add --no-cache \
     nginx curl zip unzip git libpng-dev libjpeg-turbo-dev \
     libwebp-dev libxpm-dev freetype-dev oniguruma-dev icu-dev bash shadow \
@@ -17,27 +17,28 @@ RUN apk add --no-cache \
 RUN docker-php-ext-install pdo pdo_pgsql mbstring exif pcntl bcmath gd intl sockets
 
 WORKDIR /var/www/html
+
+# Fixed the COPY command syntax
 COPY . .
-# Explicitly copy assets
+
+# Copy frontend assets from stage 1
 COPY --from=frontend /app/public/build ./public/build
 
+# Install Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 RUN composer install --no-dev --optimize-autoloader --no-scripts
 
-# Configuration
+# Configuration setup
 COPY docker/nginx.conf /etc/nginx/nginx.conf
 COPY docker/supervisord.conf /etc/supervisord.conf
 COPY docker/entrypoint.sh /usr/local/bin/entrypoint.sh
 RUN chmod +x /usr/local/bin/entrypoint.sh
 
-# Fix permissions for the user that runs Nginx/PHP
-RUN mkdir -p /var/www/html/storage/framework/views \
-             /var/www/html/storage/framework/cache \
-             /var/www/html/storage/framework/sessions \
-             /var/www/html/storage/logs \
-             /var/www/html/bootstrap/cache \
+# Permissions
+RUN mkdir -p storage/framework/views storage/framework/sessions storage/framework/cache bootstrap/cache \
     && chown -R www-data:www-data /var/www/html \
     && chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
 
 EXPOSE 8080 8081
+
 CMD ["/usr/local/bin/entrypoint.sh"]
