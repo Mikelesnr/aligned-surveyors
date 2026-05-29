@@ -31,7 +31,10 @@ class ProjectSeeder extends Seeder
                         'client_id' => $client->id,
                         'service_id' => $service->id,
                     ],
-                    ['status' => $p['status']]
+                    [
+                        'status' => $p['status'],
+                        'is_visible' => ($p['status'] === 'completed'),
+                    ]
                 );
 
                 // Populate initial layout entry inside the updates tracking line
