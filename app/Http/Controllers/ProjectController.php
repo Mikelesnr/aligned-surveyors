@@ -14,7 +14,7 @@ class ProjectController extends Controller
             $query->where('is_visible', true);
         })
             ->with(['client:id,name,slug', 'service:id,title,slug'])
-            ->select('id', 'client_id', 'service_id', 'project_title', 'status')
+            ->select('id', 'client_id', 'service_id', 'project_title', 'status', 'is_visible')
             ->latest()
             ->get();
 

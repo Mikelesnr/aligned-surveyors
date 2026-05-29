@@ -17,6 +17,7 @@ return new class extends Migration
             $table->uuid('client_id');
             $table->string('project_title');
             $table->enum('status', ['active', 'completed'])->default('active');
+            $table->boolean('is_visible')->default(false);
             $table->timestamps();
 
             // Set up strict database integrity links

@@ -141,48 +141,51 @@ export default function About({ auth, projects }) {
                             />
 
                             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
-                                {projects?.map((project, index) => (
-                                    <div
-                                        key={project.id}
-                                        className="bg-gradient-to-b from-zinc-900/40 to-zinc-950/60 backdrop-blur-md border border-white/10 rounded-2xl p-8 flex flex-col justify-between transition-all duration-300 hover:border-green-500/40 hover:-translate-y-1 group relative shadow-lg animate-on-scroll opacity-0 translate-y-4"
-                                        style={{
-                                            transitionDelay: `${index * 100}ms`,
-                                        }}
-                                    >
-                                        <div>
-                                            <div className="w-8 h-8 rounded-lg bg-green-500/10 border border-green-500/20 flex items-center justify-center text-green-400 mb-6 group-hover:bg-green-500 group-hover:text-black transition-all duration-300">
-                                                <svg
-                                                    className="w-4 h-4"
-                                                    fill="none"
-                                                    stroke="currentColor"
-                                                    viewBox="0 0 24 24"
-                                                >
-                                                    <path
-                                                        strokeLinecap="round"
-                                                        strokeLinejoin="round"
-                                                        strokeWidth={2.5}
-                                                        d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"
-                                                    />
-                                                </svg>
+                                {projects
+                                    ?.filter((project) => project.is_visible) // Only show visible projects
+                                    .map((project, index) => (
+                                        <div
+                                            key={project.id}
+                                            className="bg-gradient-to-b from-zinc-900/40 to-zinc-950/60 backdrop-blur-md border border-white/10 rounded-2xl p-8 flex flex-col justify-between transition-all duration-300 hover:border-green-500/40 hover:-translate-y-1 group relative shadow-lg animate-on-scroll opacity-0 translate-y-4"
+                                            style={{
+                                                transitionDelay: `${index * 100}ms`,
+                                            }}
+                                        >
+                                            <div>
+                                                <div className="w-8 h-8 rounded-lg bg-green-500/10 border border-green-500/20 flex items-center justify-center text-green-400 mb-6 group-hover:bg-green-500 group-hover:text-black transition-all duration-300">
+                                                    <svg
+                                                        className="w-4 h-4"
+                                                        fill="none"
+                                                        stroke="currentColor"
+                                                        viewBox="0 0 24 24"
+                                                    >
+                                                        <path
+                                                            strokeLinecap="round"
+                                                            strokeLinejoin="round"
+                                                            strokeWidth={2.5}
+                                                            d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"
+                                                        />
+                                                    </svg>
+                                                </div>
+
+                                                <h3 className="text-xl font-bold text-white mb-3 tracking-tight group-hover:text-green-400 transition-colors">
+                                                    {project.project_title}
+                                                </h3>
+
+                                                <p className="text-gray-400 text-sm leading-relaxed mb-6">
+                                                    {project.project_description ||
+                                                        "High-precision engineering and spatial survey operations delivered to compliance specification."}
+                                                </p>
                                             </div>
 
-                                            <h3 className="text-xl font-bold text-white mb-3 tracking-tight group-hover:text-green-400 transition-colors">
-                                                {project.project_title}
-                                            </h3>
-
-                                            <p className="text-gray-400 text-sm leading-relaxed mb-6">
-                                                {project.project_description ||
-                                                    "High-precision engineering and spatial survey operations delivered to compliance specification."}
-                                            </p>
+                                            <div className="flex items-center justify-between pt-4 border-t border-white/5">
+                                                <span className="text-xs font-mono px-2.5 py-1 rounded-full bg-green-500/10 text-green-400 border border-green-500/20 uppercase tracking-wider">
+                                                    {project.status ||
+                                                        "Completed"}
+                                                </span>
+                                            </div>
                                         </div>
-
-                                        <div className="flex items-center justify-between pt-4 border-t border-white/5">
-                                            <span className="text-xs font-mono px-2.5 py-1 rounded-full bg-green-500/10 text-green-400 border border-green-500/20 uppercase tracking-wider">
-                                                {project.status || "Completed"}
-                                            </span>
-                                        </div>
-                                    </div>
-                                ))}
+                                    ))}
                             </div>
                         </div>
                     </section>

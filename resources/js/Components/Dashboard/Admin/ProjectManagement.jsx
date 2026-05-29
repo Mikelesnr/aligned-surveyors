@@ -19,7 +19,7 @@ export default function ProjectManagement({ projects, services, clients }) {
         service_id: "",
         client_id: "",
         project_title: "",
-        status: "active", // Changed from "Active" to lowercase "active"
+        status: "active",
     });
 
     const openCreateMode = () => {
@@ -36,7 +36,8 @@ export default function ProjectManagement({ projects, services, clients }) {
             service_id: project.service_id,
             client_id: project.client_id,
             project_title: project.project_title,
-            status: project.status.toLowerCase(), // Ensure lowercase baseline mapping
+            status: project.status ? project.status.toLowerCase() : "active",
+            is_visible: !!project.is_visible,
         });
         setIsFormOpen(true);
     };
@@ -235,7 +236,7 @@ export default function ProjectManagement({ projects, services, clients }) {
                                     Contract Lifecycle Status
                                 </label>
                                 <select
-                                    value={data.status}
+                                    value={data.status} // Ensure it never defaults to an empty string
                                     onChange={(e) =>
                                         setData("status", e.target.value)
                                     }
@@ -251,6 +252,29 @@ export default function ProjectManagement({ projects, services, clients }) {
                                 {errors.status && (
                                     <div className="text-red-500 text-[10px] mt-1 font-mono">
                                         {errors.status}
+                                    </div>
+                                )}
+                            </div>
+                            <div>
+                                <label className="flex items-center space-x-3 cursor-pointer">
+                                    <input
+                                        type="checkbox"
+                                        checked={data.is_visible}
+                                        onChange={(e) =>
+                                            setData(
+                                                "is_visible",
+                                                e.target.checked,
+                                            )
+                                        }
+                                        className="rounded bg-zinc-950 border-zinc-800 text-green-600 focus:ring-green-500"
+                                    />
+                                    <span className="font-mono text-[10px] text-zinc-400 uppercase tracking-wider">
+                                        Display on Public Site
+                                    </span>
+                                </label>
+                                {errors.is_visible && (
+                                    <div className="text-red-500 text-[10px] mt-1 font-mono">
+                                        {errors.is_visible}
                                     </div>
                                 )}
                             </div>

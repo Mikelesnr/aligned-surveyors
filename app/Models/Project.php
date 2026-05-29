@@ -21,7 +21,20 @@ class Project extends Model
         'client_id',
         'project_title',
         'status',
+        'is_visible',
     ];
+
+   /**
+     * Get the attributes that should be cast.
+     *
+     * @return array<string, string>
+     */
+    protected function casts(): array
+    {
+        return [
+            'is_visible' => 'boolean',
+        ];
+    }
 
     /**
      * Get the parent service capability sector.

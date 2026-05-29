@@ -41,7 +41,8 @@ class AdminProjectController extends Controller
             'service_id' => 'required|uuid|exists:services,id',
             'client_id' => 'required|uuid|exists:clients,id',
             'project_title' => 'required|string|max:255',
-            'status' => 'required|in:active,Completed', // Strictly tracks document layout states
+            'status' => 'required|in:active,completed',
+            'is_visible' => 'boolean',
         ]);
 
         Project::create($validated);
@@ -60,7 +61,8 @@ class AdminProjectController extends Controller
             'service_id' => 'required|uuid|exists:services,id',
             'client_id' => 'required|uuid|exists:clients,id',
             'project_title' => 'required|string|max:255',
-            'status' => 'required|in:active,Completed',
+            'status' => 'required|in:active,completed',
+            'is_visible' => 'boolean',
         ]);
 
         $project->update($validated);
