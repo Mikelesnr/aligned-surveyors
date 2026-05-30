@@ -23,9 +23,10 @@ jobs:
             echo "--- Changing ownership to mikelesnr ---"
             sudo chown -R mikelesnr:mikelesnr /var/www/laravel-app
             
-            # 2. Fix git safety and pull
+            eval "$(ssh-agent -s)"
+            ssh-add ~/.ssh/id_ed25519
+            
             echo "--- Pulling latest code ---"
-            git config --global --add safe.directory /var/www/laravel-app
             git pull origin main
             
             # 3. Revert ownership to web user
