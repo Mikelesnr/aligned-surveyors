@@ -38,7 +38,7 @@ export default function Index({ auth, contacts }) {
                         <h2 className="text-xl font-bold">Messages</h2>
                         <button
                             onClick={() => setShowNewChatModal(true)}
-                            className="text-green-600 font-bold"
+                            className="text-blue-600 font-bold"
                         >
                             + New
                         </button>
@@ -101,7 +101,7 @@ export default function Index({ auth, contacts }) {
                                 </span>
                                 <button
                                     onClick={() => handleCreateChat(contact.id)}
-                                    className="text-green-500"
+                                    className="text-blue-500"
                                 >
                                     Chat
                                 </button>

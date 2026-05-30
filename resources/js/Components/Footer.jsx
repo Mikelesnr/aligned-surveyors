@@ -27,7 +27,7 @@ export default function Footer() {
                         <li>
                             <a
                                 href="#why-choose-us"
-                                className="hover:text-green-500 transition-colors"
+                                className="hover:text-blue-500 transition-colors"
                             >
                                 Why Choose Us
                             </a>
@@ -35,7 +35,7 @@ export default function Footer() {
                         <li>
                             <a
                                 href="#contact"
-                                className="hover:text-green-500 transition-colors"
+                                className="hover:text-blue-100 transition-colors"
                             >
                                 Contact
                             </a>
@@ -51,10 +51,10 @@ export default function Footer() {
                     </p>
                     <p className="text-sm text-gray-400">Harare, Zimbabwe</p>
                     <div className="mt-4 space-y-1">
-                        <p className="text-sm text-green-500 font-medium">
+                        <p className="text-sm text-blue-100 font-medium">
                             kknyandoro@alignedsurveyors.com
                         </p>
-                        <p className="text-sm text-green-500 font-medium">
+                        <p className="text-sm text-blue-100 font-medium">
                             kknyandoro@gmail.com
                         </p>
                         <p className="text-sm text-gray-400">

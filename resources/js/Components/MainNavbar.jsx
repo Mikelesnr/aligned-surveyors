@@ -31,7 +31,7 @@ export default function MainNavbar() {
                     <Link
                         key={link.name}
                         href={link.href}
-                        className="hover:text-green-500 transition"
+                        className="hover:text-blue-500 transition"
                     >
                         {link.name}
                     </Link>
@@ -41,7 +41,7 @@ export default function MainNavbar() {
                     <div className="flex items-center space-x-4">
                         <Link
                             href={route("dashboard")}
-                            className="hover:text-green-500"
+                            className="hover:text-blue-500"
                         >
                             Dashboard
                         </Link>
@@ -57,7 +57,7 @@ export default function MainNavbar() {
                 ) : (
                     <Link
                         href={route("login")}
-                        className="bg-green-600 px-4 py-2 rounded-full hover:bg-green-500 transition"
+                        className="bg-blue-600 px-4 py-2 rounded-full hover:bg-blue-500 transition"
                     >
                         Staff Portal
                     </Link>

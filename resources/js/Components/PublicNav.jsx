@@ -47,7 +47,7 @@ export default function PublicNav({ auth }) {
                     <Link
                         key={link.name}
                         href={link.href}
-                        className="hover:underline hover:text-green-500 transition-colors"
+                        className="hover:underline hover:text-blue-500 transition-colors"
                     >
                         {link.name}
                     </Link>
@@ -70,7 +70,7 @@ export default function PublicNav({ auth }) {
                         <Link
                             key={link.name}
                             href={link.href}
-                            className="text-white hover:text-green-500"
+                            className="text-white hover:text-blue-500"
                             onClick={() => setIsOpen(false)}
                         >
                             {link.name}
@@ -82,7 +82,7 @@ export default function PublicNav({ auth }) {
                         </Link>
                     ) : (
                         <Link href={route("login")} className="text-white">
-                            Log in
+                            Staff Portal
                         </Link>
                     )}
                 </div>

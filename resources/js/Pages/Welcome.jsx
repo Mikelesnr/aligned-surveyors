@@ -47,7 +47,7 @@ export default function Welcome({ auth }) {
                             <div className="flex items-center space-x-3">
                                 <span className="text-xl font-bold tracking-tight uppercase">
                                     Aligned{" "}
-                                    <span className="text-green-500">
+                                    <span className="header-color">
                                         Surveyors
                                     </span>
                                 </span>
@@ -77,7 +77,7 @@ export default function Welcome({ auth }) {
                         className="py-24 px-6 relative overflow-hidden bg-black/20"
                     >
                         {/* Ambient subtle background glow */}
-                        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-green-500/5 blur-[120px] pointer-events-none rounded-full" />
+                        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-blue-500/5 blur-[120px] pointer-events-none rounded-full" />
 
                         <div className="container mx-auto max-w-6xl relative z-10">
                             {/* Section Header */}
@@ -94,14 +94,14 @@ export default function Welcome({ auth }) {
                                 {data.services.map((service, i) => (
                                     <div
                                         key={i}
-                                        className="group relative bg-zinc-900/40 backdrop-blur-md p-8 rounded-2xl border border-white/5 hover:border-green-500/30 transition-all duration-300 flex flex-col justify-between"
+                                        className="group relative bg-zinc-900/40 backdrop-blur-md p-8 rounded-2xl border border-white/5 hover:border-blue-500/30 transition-all duration-300 flex flex-col justify-between"
                                     >
                                         {/* Accent line animation overlay on hover */}
-                                        <div className="absolute inset-0 bg-gradient-to-br from-green-500/0 via-green-500/0 to-green-500/[0.01] opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl pointer-events-none" />
-                                        <div className="w-0 h-[2px] bg-green-500 absolute top-0 left-8 group-hover:w-1/3 transition-all duration-300 rounded-full" />
+                                        <div className="absolute inset-0 bg-gradient-to-br from-blue-900/0 via-blue-900/0 to-blue-900/[0.01] opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl pointer-events-none" />
+                                        <div className="w-0 h-[2px] bg-blue-500 absolute top-0 left-8 group-hover:w-1/3 transition-all duration-300 rounded-full" />
 
                                         <div>
-                                            <div className="text-xs font-mono text-zinc-600 group-hover:text-green-500/50 transition-colors duration-300 mb-2">
+                                            <div className="text-xs font-mono text-zinc-600 group-hover:text-blue-500/50 transition-colors duration-300 mb-2">
                                                 0{i + 1}
                                             </div>
                                             <h4 className="font-bold text-xl mb-3 text-gray-100">
@@ -118,7 +118,7 @@ export default function Welcome({ auth }) {
                                                     service.title,
                                                 )
                                             }
-                                            className="inline-flex items-center text-xs font-semibold text-green-400 hover:text-green-300 transition-colors cursor-pointer w-fit"
+                                            className="inline-flex items-center text-xs font-semibold text-blue-400 hover:text-blue-300 transition-colors cursor-pointer w-fit"
                                         >
                                             <span>Explore Details</span>
                                             <svg
@@ -173,7 +173,7 @@ export default function Welcome({ auth }) {
                                     </button>
 
                                     <div className="mb-6">
-                                        <span className="text-green-500 text-xs font-mono uppercase tracking-widest">
+                                        <span className="text-blue-500 text-xs font-mono uppercase tracking-widest">
                                             Capabilities Suite
                                         </span>
                                         <h3 className="text-2xl font-bold text-white mt-1 border-b border-white/10 pb-3">
@@ -195,7 +195,7 @@ export default function Welcome({ auth }) {
                                                                 key={idx}
                                                                 className="flex items-start text-sm text-zinc-400 leading-relaxed"
                                                             >
-                                                                <span className="text-green-500 mr-2 mt-1 text-xs">
+                                                                <span className="text-blue-500 mr-2 mt-1 text-xs">
                                                                     ◆
                                                                 </span>
                                                                 <span>
@@ -212,7 +212,7 @@ export default function Welcome({ auth }) {
                                     {activeService.projects &&
                                         activeService.projects.length > 0 && (
                                             <div className="bg-black/40 border border-white/5 rounded-xl p-4">
-                                                <h4 className="text-xs font-semibold text-green-400 uppercase tracking-widest mb-2 flex items-center">
+                                                <h4 className="text-xs font-semibold text-blue-400 uppercase tracking-widest mb-2 flex items-center">
                                                     <svg
                                                         className="w-3.5 h-3.5 mr-1.5"
                                                         fill="none"
@@ -276,7 +276,7 @@ export default function Welcome({ auth }) {
                                                     <h4 className="text-xl font-bold mb-1 text-white">
                                                         {benefit.title}
                                                     </h4>
-                                                    <p className="text-green-300">
+                                                    <p className="header-color">
                                                         {benefit.description}
                                                     </p>
                                                 </div>
@@ -361,7 +361,7 @@ export default function Welcome({ auth }) {
                                     >
                                         <div className="flex flex-col items-center gap-3">
                                             {/* Logo Container */}
-                                            <div className="bg-black/20 p-6 rounded-xl w-32 h-32 flex items-center justify-center border border-white/5 hover:border-green-500 transition-colors">
+                                            <div className="bg-black/20 p-6 rounded-xl w-32 h-32 flex items-center justify-center border border-white/5 hover:border-blue-500 transition-colors">
                                                 <img
                                                     src={client.logo}
                                                     alt={client.name}
@@ -370,7 +370,7 @@ export default function Welcome({ auth }) {
                                             </div>
 
                                             {/* Styled Name */}
-                                            <span className="text-xs font-medium text-gray-400 group-hover:text-green-500 transition-colors text-center px-2">
+                                            <span className="text-xs font-medium text-gray-400 group-hover:text-blue-500 transition-colors text-center px-2">
                                                 {client.name}
                                             </span>
                                         </div>
@@ -396,7 +396,7 @@ export default function Welcome({ auth }) {
                                 <div className="flex justify-center gap-4">
                                     <a
                                         href="/contact"
-                                        className="bg-green-600 text-white font-semibold py-3 px-8 rounded-full shadow-lg hover:bg-green-500 transition-all duration-300"
+                                        className="bg-blue-600 text-white font-semibold py-3 px-8 rounded-full shadow-lg hover:bg-blue-500 transition-all duration-300"
                                     >
                                         Get a Quote
                                     </a>

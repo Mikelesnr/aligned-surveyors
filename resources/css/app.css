@@ -10,18 +10,22 @@
 /* Custom primary color definition */
 /* This color should ideally be defined in your tailwind.config.js file, but is included here for clarity. */
 :root {
-    --color-primary: #2d572c;
+    --color-primary: #030169;
+    --text-color: #faf1f1;
+    --header-color: #1b8af1;
 }
 
 /* Base styles for the primary button */
 .btn-primary {
     background-color: var(--color-primary);
+    color: var(--text-color);
     /* The rest of the styling is handled by Tailwind classes on the element itself */
 }
 
 /* Adds a subtle shadow to cards and images */
 .card-shadow {
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    box-shadow:
+        0 10px 15px -3px rgba(0, 0, 0, 0.1),
         0 4px 6px -2px rgba(0, 0, 0, 0.05);
 }
 
@@ -45,11 +49,21 @@
 .animate-on-scroll {
     opacity: 0;
     transform: translateY(20px);
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    transition:
+        opacity 0.6s ease-out,
+        transform 0.6s ease-out;
     will-change: opacity, transform;
 }
 
 .animate-on-scroll.is-visible {
     opacity: 1;
     transform: translateY(0);
+}
+
+.header-color {
+    color: var(--header-color);
+}
+
+.section-bg {
+    background-color: var(--header-color);
 }
