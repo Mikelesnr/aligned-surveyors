@@ -19,33 +19,31 @@ jobs:
           script: |
             cd /var/www/laravel-app
             
-            # 1. Take ownership to pull code
+            # 1. Take ownership
             echo "--- Changing ownership to mikelesnr ---"
             sudo chown -R mikelesnr:mikelesnr /var/www/laravel-app
             
+            # 2. Pull code
             eval "$(ssh-agent -s)"
-            ssh-add ~/.ssh/id_ed25519
-            
+            ssh-add /home/mikelesnr/.ssh/id_ed25519
             echo "--- Pulling latest code ---"
             git pull origin main
             
-            # 3. Revert ownership to web user
-            echo "--- Reverting ownership to www-data ---"
-            sudo chown -R www-data:www-data /var/www/laravel-app
-            
-            # 4. Backend tasks
+            # 3. RUN ALL TASKS AS MIKELESNR (No sudo -u www-data needed)
             echo "--- Running backend tasks ---"
-            sudo -u www-data composer install --no-dev --optimize-autoloader
-            sudo -u www-data php artisan migrate --force
+            composer install --no-dev --optimize-autoloader
+            php artisan migrate --force
             
-            # 5. Build frontend
             echo "--- Building frontend assets ---"
-            sudo -u www-data npm install
-            sudo -u www-data npm run build
+            npm install
+            npm run build
             
-            # 6. Final cleanup
             echo "--- Caching config ---"
-            sudo -u www-data php artisan config:cache
+            php artisan config:cache
+            
+            # 4. Final ownership revert (ONLY at the very end)
+            echo "--- Reverting ownership to www-data for Nginx ---"
+            sudo chown -R www-data:www-data /var/www/laravel-app
             
             echo "--- Restarting services ---"
             sudo systemctl reload nginx
