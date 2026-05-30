@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Mail\ContactFormMailable;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Http\Request;
 
 class ContactController extends Controller
 {
@@ -15,15 +16,15 @@ class ContactController extends Controller
             'message' => 'required|string',
         ]);
 
-        // Logic to send the email
-        // Replace 'info@alignedsurveyors.com' with your actual receiving address
-        Mail::raw($validated['message'], function ($message) use ($validated) {
-            $message->to('info@alignedsurveyors.com')
-                ->from($validated['email'], $validated['name'])
-                ->subject('New Contact Inquiry: ' . $validated['name']);
-        });
+        // Retrieve the admin email from .env
+        $adminEmail = env('ADMIN_CONTACT_EMAIL', 'info@alignedsurveyors.com');
 
-        // Redirect back with a success message
-        return back()->with('status', 'Thank you for your message. We will get back to you shortly.');
+        // 1. Send notification to you
+        Mail::to($adminEmail)->send(new ContactFormMailable($validated, false));
+
+        // 2. Send auto-response to the user
+        Mail::to($validated['email'])->send(new ContactFormMailable($validated, true));
+
+        return back()->with('status', 'Thank you! A confirmation email has been sent.');
     }
 }
