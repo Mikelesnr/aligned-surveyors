@@ -31,16 +31,14 @@ export default function About({ auth, projects }) {
             <Head title="About Us" />
 
             {/* The primary wrapping layer matches Welcome's exact overlay backing opacity */}
-            <div className="text-white min-h-screen bg-black/40">
+            <div className="antialiased bg-black bg-opacity-70 text-white">
                 {/* Header Navigation Section */}
                 <header className="container mx-auto px-6 py-6 flex justify-between items-center relative z-50">
                     <Link href="/" className="flex items-center">
                         <div className="flex items-center space-x-3">
                             <span className="text-xl font-bold tracking-tight uppercase">
                                 Aligned{" "}
-                                <span className="text-green-500">
-                                    Surveyors
-                                </span>
+                                <span className="header-color">Surveyors</span>
                             </span>
                         </div>
                     </Link>
@@ -51,7 +49,7 @@ export default function About({ auth, projects }) {
                     {/* 1. Transparent Hero Section with pure solid text matching Welcome */}
                     <section className="relative pt-24 pb-20 px-6 overflow-hidden">
                         <div className="container mx-auto max-w-4xl text-center relative z-10 animate-on-scroll opacity-0 translate-y-4 transition-all duration-700">
-                            <span className="text-green-500 text-sm font-bold tracking-widest uppercase block mb-3">
+                            <span className="header-color text-sm font-bold tracking-widest uppercase block mb-3">
                                 Corporate Profile
                             </span>
                             {/* Colorful text gradient completely removed to match your pure clean typography style */}
@@ -76,7 +74,7 @@ export default function About({ auth, projects }) {
                                 {aboutData.team.map((member, index) => (
                                     <div
                                         key={index}
-                                        className="bg-black/40 backdrop-blur-md border border-white/10 rounded-2xl p-8 hover:border-green-500/30 transition-all duration-300 relative group shadow-xl flex flex-col md:flex-row gap-6 items-start animate-on-scroll opacity-0 translate-y-4"
+                                        className="bg-black/40 backdrop-blur-md border border-white/10 rounded-2xl p-8 hover:border-blue-500/30 transition-all duration-300 relative group shadow-xl flex flex-col md:flex-row gap-6 items-start animate-on-scroll opacity-0 translate-y-4"
                                         style={{
                                             transitionDelay: `${index * 150}ms`,
                                         }}
@@ -113,10 +111,10 @@ export default function About({ auth, projects }) {
                                         </div>
 
                                         <div className="flex-1">
-                                            <span className="text-xs text-green-500 font-mono tracking-wider uppercase block mb-1">
+                                            <span className="text-xs text-blue-400 font-mono tracking-wider uppercase block mb-1">
                                                 {member.credentials}
                                             </span>
-                                            <h3 className="text-2xl font-bold text-white tracking-tight group-hover:text-green-400 transition-colors">
+                                            <h3 className="text-2xl font-bold text-white tracking-tight group-hover:text-blue-400 transition-colors">
                                                 {member.name}
                                             </h3>
                                             <p className="text-sm font-medium text-gray-400 mb-4 mt-0.5">
@@ -146,13 +144,13 @@ export default function About({ auth, projects }) {
                                     .map((project, index) => (
                                         <div
                                             key={project.id}
-                                            className="bg-gradient-to-b from-zinc-900/40 to-zinc-950/60 backdrop-blur-md border border-white/10 rounded-2xl p-8 flex flex-col justify-between transition-all duration-300 hover:border-green-500/40 hover:-translate-y-1 group relative shadow-lg animate-on-scroll opacity-0 translate-y-4"
+                                            className="bg-gradient-to-b from-zinc-900/40 to-zinc-950/60 backdrop-blur-md border border-white/10 rounded-2xl p-8 flex flex-col justify-between transition-all duration-300 hover:border-blue-500/40 hover:-translate-y-1 group relative shadow-lg animate-on-scroll opacity-0 translate-y-4"
                                             style={{
                                                 transitionDelay: `${index * 100}ms`,
                                             }}
                                         >
                                             <div>
-                                                <div className="w-8 h-8 rounded-lg bg-green-500/10 border border-green-500/20 flex items-center justify-center text-green-400 mb-6 group-hover:bg-green-500 group-hover:text-black transition-all duration-300">
+                                                <div className="w-8 h-8 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400 mb-6 group-hover:bg-blue-500 group-hover:text-black transition-all duration-300">
                                                     <svg
                                                         className="w-4 h-4"
                                                         fill="none"
@@ -168,7 +166,7 @@ export default function About({ auth, projects }) {
                                                     </svg>
                                                 </div>
 
-                                                <h3 className="text-xl font-bold text-white mb-3 tracking-tight group-hover:text-green-400 transition-colors">
+                                                <h3 className="text-xl font-bold text-white mb-3 tracking-tight group-hover:text-blue-400 transition-colors">
                                                     {project.project_title}
                                                 </h3>
 
@@ -179,7 +177,7 @@ export default function About({ auth, projects }) {
                                             </div>
 
                                             <div className="flex items-center justify-between pt-4 border-t border-white/5">
-                                                <span className="text-xs font-mono px-2.5 py-1 rounded-full bg-green-500/10 text-green-400 border border-green-500/20 uppercase tracking-wider">
+                                                <span className="text-xs font-mono px-2.5 py-1 rounded-full bg-blue-500/10 text-blue-400 border border-blue-500/20 uppercase tracking-wider">
                                                     {project.status ||
                                                         "Completed"}
                                                 </span>

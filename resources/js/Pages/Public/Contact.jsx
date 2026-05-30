@@ -46,16 +46,14 @@ export default function Contact({ auth, status }) {
             <Head title="Contact Us" />
 
             {/* Main overlay wrapper matches your precise welcome/about backdrop opacity */}
-            <div className="text-white min-h-screen bg-black/40">
+            <div className="antialiased bg-black bg-opacity-70 text-white">
                 {/* Header Navigation Section */}
                 <header className="container mx-auto px-6 py-6 flex justify-between items-center relative z-50">
                     <Link href="/" className="flex items-center">
                         <div className="flex items-center space-x-3">
                             <span className="text-xl font-bold tracking-tight uppercase">
                                 Aligned{" "}
-                                <span className="text-green-500">
-                                    Surveyors
-                                </span>
+                                <span className="text-blue-500">Surveyors</span>
                             </span>
                         </div>
                     </Link>
@@ -80,7 +78,7 @@ export default function Contact({ auth, status }) {
                             {/* Fast Contact Channels */}
                             <div className="pt-6 space-y-4 border-t border-white/5 text-sm font-mono">
                                 <div className="flex items-center space-x-3 group">
-                                    <span className="text-green-500">⚡</span>
+                                    <span className="text-blue-500">⚡</span>
                                     <a
                                         href="tel:+263773970507"
                                         className="text-gray-400 group-hover:text-white transition-colors"
@@ -89,7 +87,7 @@ export default function Contact({ auth, status }) {
                                     </a>
                                 </div>
                                 <div className="flex items-center space-x-3 group">
-                                    <span className="text-green-500">✉️</span>
+                                    <span className="text-blue-500">✉️</span>
                                     <a
                                         href="mailto:kknyandoro@alignedsurveyors.com"
                                         className="text-gray-400 group-hover:text-white transition-colors break-all"
@@ -103,10 +101,10 @@ export default function Contact({ auth, status }) {
                         {/* Right Column: Premium Form Card */}
                         <div className="md:col-span-7 bg-gradient-to-b from-zinc-900/40 to-zinc-950/60 backdrop-blur-md border border-white/10 rounded-2xl p-8 shadow-xl relative group animate-on-scroll opacity-0 translate-y-4 transition-all duration-700 delay-150">
                             {/* Decorative Top Accent Glow Strip */}
-                            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-green-500/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity rounded-t-2xl" />
+                            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-blue-500/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity rounded-t-2xl" />
 
                             {status && (
-                                <div className="mb-6 p-4 bg-green-500/10 border border-green-500/20 text-green-400 rounded-xl text-sm font-medium">
+                                <div className="mb-6 p-4 bg-blue-500/10 border border-blue-500/20 text-blue-400 rounded-xl text-sm font-medium">
                                     {status}
                                 </div>
                             )}
@@ -123,7 +121,7 @@ export default function Contact({ auth, status }) {
                                         id="name"
                                         type="text"
                                         value={data.name}
-                                        className="w-full bg-black/40 border-white/10 text-white rounded-xl focus:border-green-500 focus:ring-green-500/20 transition-all placeholder-gray-600"
+                                        className="w-full bg-black/40 border-white/10 text-white rounded-xl focus:border-blue-500 focus:ring-blue-500/20 transition-all placeholder-gray-600"
                                         placeholder="John Doe"
                                         onChange={(e) =>
                                             setData("name", e.target.value)
@@ -143,7 +141,7 @@ export default function Contact({ auth, status }) {
                                         id="email"
                                         type="email"
                                         value={data.email}
-                                        className="w-full bg-black/40 border-white/10 text-white rounded-xl focus:border-green-500 focus:ring-green-500/20 transition-all placeholder-gray-600"
+                                        className="w-full bg-black/40 border-white/10 text-white rounded-xl focus:border-blue-500 focus:ring-blue-500/20 transition-all placeholder-gray-600"
                                         placeholder="johndoe@example.com"
                                         onChange={(e) =>
                                             setData("email", e.target.value)
@@ -162,7 +160,7 @@ export default function Contact({ auth, status }) {
                                     <textarea
                                         id="message"
                                         value={data.message}
-                                        className="w-full bg-black/40 border border-white/10 text-white rounded-xl focus:border-green-500 focus:ring-green-500/20 transition-all placeholder-gray-600 p-3 text-sm"
+                                        className="w-full bg-black/40 border border-white/10 text-white rounded-xl focus:border-blue-500 focus:ring-blue-500/20 transition-all placeholder-gray-600 p-3 text-sm"
                                         rows="5"
                                         placeholder="Tell us about your survey or spatial development parameters..."
                                         onChange={(e) =>
@@ -175,7 +173,7 @@ export default function Contact({ auth, status }) {
                                 {/* Action Submit Button */}
                                 <div className="pt-2">
                                     <PrimaryButton
-                                        className="w-full justify-center bg-green-600 hover:bg-green-500 text-white font-semibold py-3 px-6 rounded-full shadow-lg transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed transform active:scale-[0.98]"
+                                        className="w-full justify-center bg-blue-600 hover:bg-blue-500 text-white font-semibold py-3 px-6 rounded-full shadow-lg transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed transform active:scale-[0.98]"
                                         disabled={processing}
                                     >
                                         {processing ? (
