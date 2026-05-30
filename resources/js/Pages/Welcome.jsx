@@ -48,7 +48,7 @@ export default function Welcome({ auth }) {
                                 <span className="text-xl font-bold tracking-tight uppercase">
                                     Aligned{" "}
                                     <span className="header-color">
-                                        Surveyo
+                                        Surveyors
                                     </span>
                                 </span>
                             </div>
