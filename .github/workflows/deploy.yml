@@ -18,15 +18,30 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           script: |
             cd /var/www/laravel-app
+
+            echo "--- Changing ownership to mikelesnr ---"
+            sudo chown -R mikelesnr:mikelesnr /var/www/laravel-app
+
+            echo "--- Pulling latest code ---"
             git pull origin main
 
-            # Run tasks as www-data
+            echo "--- Reverting ownership to www-data ---"
+            sudo chown -R www-data:www-data /var/www/laravel-app
+
+            echo "--- Running backend tasks ---"
             sudo -u www-data composer install --no-dev --optimize-autoloader
             sudo -u www-data php artisan migrate --force
+            echo "Backend tasks complete."
+
+            echo "--- Building frontend assets ---"
             sudo -u www-data npm install
             sudo -u www-data npm run build
+            echo "Frontend build complete."
+
+            echo "--- Caching config ---"
             sudo -u www-data php artisan config:cache
 
-            # Restart services (allowed byvisudo rule)
+            echo "--- Restarting services ---"
             sudo systemctl reload nginx
             sudo systemctl restart supervisor
+            echo "Deployment finished successfully!"
