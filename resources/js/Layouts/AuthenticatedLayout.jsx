@@ -22,7 +22,7 @@ export default function AuthenticatedLayout({ header, children }) {
                 backgroundPosition: "center",
             }}
         >
-            <nav className="border-b border-gray-100 bg-slate-850/50 bg-opacity-20 h-20">
+            <nav className="border-b border-gray-100 bg-slate-850/50 bg-opacity-20 h-20 z-50">
                 <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-white">
                     <div className="flex h-16 justify-between items-center">
                         <div className="flex items-center">
@@ -41,7 +41,7 @@ export default function AuthenticatedLayout({ header, children }) {
                             </div>
 
                             {/* Primary Navigation Links */}
-                            <div className="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex header-color">
+                            <div className="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex header-color z-50">
                                 <NavLink
                                     href={route("dashboard")}
                                     active={route().current("dashboard")}
@@ -178,9 +178,8 @@ export default function AuthenticatedLayout({ header, children }) {
                         " sm:hidden"
                     }
                 >
-                    // resources/js/Layouts/AuthenticatedLayout.jsx (Mobile
-                    Section)
-                    <div className="space-y-1 pb-3 pt-2">
+                    {/* Mobile Section */}
+                    <div className="space-y-1 pb-3 pt-2 bg-white header-color z-50">
                         <ResponsiveNavLink
                             href={route("dashboard")}
                             active={route().current("dashboard")}
@@ -202,7 +201,7 @@ export default function AuthenticatedLayout({ header, children }) {
                             Chat
                         </ResponsiveNavLink>
                     </div>
-                    <div className="border-t border-gray-200 pb-1 pt-4">
+                    <div className="border-t border-gray-200 pb-1 pt-4 bg-white header-color z-50">
                         <div className="px-4">
                             <div className="text-base font-medium text-gray-800">
                                 {user.name}
