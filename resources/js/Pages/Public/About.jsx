@@ -4,6 +4,7 @@ import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import PublicNav from "@/Components/PublicNav";
 import { Head, Link } from "@inertiajs/react";
 import SectionHeader from "@/Components/SectionHeader";
+import SectionHeader2 from "@/Components/SectionHeader2";
 import aboutData from "@/Pages/Data/About.json"; // Imported team data clean from JSON
 
 export default function About({ auth, projects }) {
@@ -63,7 +64,7 @@ export default function About({ auth, projects }) {
                     </section>
 
                     {/* 2. Solid "Our People" Section using standard structural background backing matching Welcome */}
-                    <section className="py-24 px-6 bg-zinc-900/90 border-t border-b border-white/5 relative z-10">
+                    <section className="py-24 px-6 bg-white border-t border-b border-white/5 relative z-10">
                         <div className="container mx-auto max-w-5xl">
                             <SectionHeader
                                 tagline="Leadership & Expertise"
@@ -74,7 +75,7 @@ export default function About({ auth, projects }) {
                                 {aboutData.team.map((member, index) => (
                                     <div
                                         key={index}
-                                        className="bg-black/40 backdrop-blur-md border border-white/10 rounded-2xl p-8 hover:border-blue-500/30 transition-all duration-300 relative group shadow-xl flex flex-col md:flex-row gap-6 items-start animate-on-scroll opacity-0 translate-y-4"
+                                        className="client-bg backdrop-blur-md border border-white/10 rounded-2xl p-8 hover:border-blue-500/30 transition-all duration-300 relative group shadow-xl flex flex-col md:flex-row gap-6 items-start animate-on-scroll opacity-0 translate-y-4"
                                         style={{
                                             transitionDelay: `${index * 150}ms`,
                                         }}
@@ -96,7 +97,7 @@ export default function About({ auth, projects }) {
                                                 />
                                             ) : null}
                                             <svg
-                                                className="w-10 h-10 text-zinc-600 hidden"
+                                                className="w-10 h-10 header-color2 hidden"
                                                 fill="none"
                                                 stroke="currentColor"
                                                 viewBox="0 0 24 24"
@@ -110,17 +111,17 @@ export default function About({ auth, projects }) {
                                             </svg>
                                         </div>
 
-                                        <div className="flex-1">
-                                            <span className="text-xs text-blue-400 font-mono tracking-wider uppercase block mb-1">
+                                        <div className="flex-1 bg-slate-900/80 border border-white/10 rounded-lg p-4">
+                                            <span className="text-xs text-slate-100 font-mono tracking-wider uppercase block mb-1">
                                                 {member.credentials}
                                             </span>
                                             <h3 className="text-2xl font-bold text-white tracking-tight group-hover:text-blue-400 transition-colors">
                                                 {member.name}
                                             </h3>
-                                            <p className="text-sm font-medium text-gray-400 mb-4 mt-0.5">
+                                            <p className="text-sm font-medium text-slate-100 mb-4 mt-0.5">
                                                 {member.role}
                                             </p>
-                                            <p className="text-gray-300 leading-relaxed text-sm">
+                                            <p className="text-slate-300 leading-relaxed text-sm">
                                                 {member.bio}
                                             </p>
                                         </div>
@@ -133,7 +134,7 @@ export default function About({ auth, projects }) {
                     {/* 3. Transparent "Our Projects" Card Grid Section matching Services structure */}
                     <section className="py-24 px-6 relative overflow-hidden bg-transparent">
                         <div className="container mx-auto max-w-6xl relative z-10">
-                            <SectionHeader
+                            <SectionHeader2
                                 tagline="Operations Track Record"
                                 title="Our Projects"
                             />

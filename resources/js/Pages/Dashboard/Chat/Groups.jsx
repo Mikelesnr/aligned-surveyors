@@ -17,7 +17,7 @@ export default function Groups({
         <AuthenticatedLayout>
             <Head title="Group Workspace" />
 
-            <div className="h-[calc(100vh-64px)] flex bg-white overflow-hidden">
+            <div className="h-[calc(100vh-64px)] flex bg-slate-950/90 overflow-hidden">
                 {/* Sidebar maintains state for My Channels and Discover */}
                 <GroupSidebar
                     groups={myGroups}
@@ -26,7 +26,7 @@ export default function Groups({
                 />
 
                 {/* Main Content Area */}
-                <div className="flex-1 bg-gray-50">
+                <div className="flex-1 bg-slate-900/50">
                     {activeGroup ? (
                         <GroupChatWindow
                             group={activeGroup}

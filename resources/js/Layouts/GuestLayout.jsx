@@ -6,23 +6,23 @@ import FloatingChatbot from "@/Components/FloatingChatbot";
 export default function GuestLayout({ children }) {
     return (
         <div
-            className="min-h-screen bg-black bg-opacity-50 flex flex-col"
+            className="min-h-screen bg-slate-900/50 flex flex-col"
             style={{
-                backgroundImage: "url('/images/mainbg.jpg')",
+                backgroundImage: "url('/images/backgrounds/bg2.jpeg')",
                 backgroundSize: "cover",
                 backgroundPosition: "center",
             }}
         >
             {/* Header / Logo */}
-            <div className="bg-gray/50 flex shrink-0 items-center">
+            <div className="bg-slate-100 bg-opacity-50 h-20 flex shrink-0 items-center">
                 <Link href="/" className="flex items-center">
                     {/* Changed p-2 to p-1.5 for tighter fit; added shrink-0 to container */}
-                    <div className="p-1.5 rounded-xl backdrop-blur-sm border border-white/10 shrink-0">
+                    <div className="p-1.5 rounded-xl backdrop-blur-sm h-20 border border-white/10 shrink-0">
                         <img
                             src="/images/logo2.png"
                             alt="Aligned Surveyors Logo"
                             // Kept h-12, but consider reducing if it still overlaps
-                            className="bg-black/90 rounded-xl h-10 md:h-12 w-auto object-contain transition-all duration-300"
+                            className="bg-slate-100 bg-opacity-90 rounded-xl h-16 md:h-16 w-auto object-contain transition-all duration-300"
                         />
                     </div>
                 </Link>

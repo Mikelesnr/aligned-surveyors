@@ -32,9 +32,9 @@ export default function Index({ auth, contacts }) {
     return (
         <AuthenticatedLayout>
             <Head title="Communications" />
-            <div className="h-[calc(100vh-64px)] flex bg-white overflow-hidden">
-                <div className="w-80 border-r border-gray-200 flex flex-col bg-gray-50">
-                    <div className="p-6 border-b border-gray-200 flex justify-between items-center bg-white">
+            <div className="h-[calc(100vh-64px)] flex bg-slate-950/90 header-color overflow-hidden">
+                <div className="w-80 border-r border-gray-200 flex flex-col">
+                    <div className="p-6 border-b border-gray-200 flex justify-between items-center bg-transparent">
                         <h2 className="text-xl font-bold">Messages</h2>
                         <button
                             onClick={() => setShowNewChatModal(true)}
@@ -62,7 +62,7 @@ export default function Index({ auth, contacts }) {
                         ))}
                     </div>
                 </div>
-                <div className="flex-1 bg-white">
+                <div className="flex-1 bg-slate-900/50">
                     {activeTarget.data ? (
                         <PeerChatWindow
                             auth={auth}

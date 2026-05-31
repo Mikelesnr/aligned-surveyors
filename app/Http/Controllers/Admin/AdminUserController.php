@@ -9,24 +9,30 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Gate;
-use Inertia\Inertia;
-use Inertia\Response;
 use Illuminate\Validation\Rules\Enum;
 use Illuminate\Support\Facades\Auth;
+use Inertia\Inertia;
 
 class AdminUserController extends Controller
 {
     /**
      * Display a listing of all team members.
      */
-    public function index(): Response
+    public function index()
     {
-        // Enforce the registered 'isAdmin' gate from AppServiceProvider
         Gate::authorize('isAdmin');
 
-        return Inertia::render('Admin/Users/Index', [
-            'users' => User::orderBy('name')->get(['id', 'name', 'email', 'role', 'created_at'])
-        ]);
+        $users = User::where('email', '!=', config('services.admin.email'))
+            ->where('id', '!=', Auth::id())
+            ->orderBy('name')
+            ->get(['id', 'name', 'email', 'role', 'created_at']);
+
+        // ADD THIS: Detect if the request is from Axios
+        if (request()->wantsJson() || request()->ajax()) {
+            return response()->json(['users' => $users]);
+        }
+
+        return Inertia::render('Admin/Users/Index', ['users' => $users]);
     }
 
     /**

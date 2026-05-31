@@ -6,7 +6,7 @@ import PublicNav from "@/Components/PublicNav";
 import PrimaryButton from "@/Components/PrimaryButton";
 import TextInput from "@/Components/TextInput";
 import InputLabel from "@/Components/InputLabel";
-import SectionHeader from "@/Components/SectionHeader";
+import SectionHeader2 from "@/Components/SectionHeader2";
 
 export default function Contact({ auth, status }) {
     const Layout = auth?.user ? AuthenticatedLayout : GuestLayout;
@@ -53,7 +53,7 @@ export default function Contact({ auth, status }) {
                         <div className="flex items-center space-x-3">
                             <span className="text-xl font-bold tracking-tight uppercase">
                                 Aligned{" "}
-                                <span className="text-blue-500">Surveyors</span>
+                                <span className="header-color">Surveyors</span>
                             </span>
                         </div>
                     </Link>
@@ -64,11 +64,11 @@ export default function Contact({ auth, status }) {
                     <div className="grid md:grid-cols-12 gap-12 items-start mt-8">
                         {/* Left Column: Contextual Action Text */}
                         <div className="md:col-span-5 space-y-6 animate-on-scroll opacity-0 translate-y-4 transition-all duration-700">
-                            <SectionHeader
+                            <SectionHeader2
                                 tagline="Get In Touch"
                                 title="Let's Build Together"
                             />
-                            <p className="text-gray-300 leading-relaxed text-sm md:text-base">
+                            <p className="text-slate-300 leading-relaxed text-sm md:text-base bg-slate-900/60 p-4 rounded-lg">
                                 Have an upcoming project or need precision
                                 spatial advice? Fill out the form, and our
                                 engineering team will get back to you with an
@@ -76,12 +76,12 @@ export default function Contact({ auth, status }) {
                             </p>
 
                             {/* Fast Contact Channels */}
-                            <div className="pt-6 space-y-4 border-t border-white/5 text-sm font-mono">
+                            <div className="pt-6 space-y-4 border-t border-white/5 text-sm font-mono bg-slate-900/60 p-4 rounded-lg">
                                 <div className="flex items-center space-x-3 group">
                                     <span className="text-blue-500">⚡</span>
                                     <a
                                         href="tel:+263773970507"
-                                        className="text-gray-400 group-hover:text-white transition-colors"
+                                        className="header-color group-hover:text-white transition-colors"
                                     >
                                         +263 773 970 507
                                     </a>
@@ -90,7 +90,7 @@ export default function Contact({ auth, status }) {
                                     <span className="text-blue-500">✉️</span>
                                     <a
                                         href="mailto:kknyandoro@alignedsurveyors.com"
-                                        className="text-gray-400 group-hover:text-white transition-colors break-all"
+                                        className="header-color group-hover:text-white transition-colors break-all"
                                     >
                                         kknyandoro@alignedsurveyors.com
                                     </a>
@@ -99,7 +99,7 @@ export default function Contact({ auth, status }) {
                         </div>
 
                         {/* Right Column: Premium Form Card */}
-                        <div className="md:col-span-7 bg-gradient-to-b from-zinc-900/40 to-zinc-950/60 backdrop-blur-md border border-white/10 rounded-2xl p-8 shadow-xl relative group animate-on-scroll opacity-0 translate-y-4 transition-all duration-700 delay-150">
+                        <div className="md:col-span-7 bg-gradient-to-b from-slate-900/60 to-slate-950/60 backdrop-blur-md border border-white/10 rounded-2xl p-8 shadow-xl relative group animate-on-scroll opacity-0 translate-y-4 transition-all duration-700 delay-150">
                             {/* Decorative Top Accent Glow Strip */}
                             <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-blue-500/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity rounded-t-2xl" />
 
@@ -115,7 +115,7 @@ export default function Contact({ auth, status }) {
                                     <InputLabel
                                         htmlFor="name"
                                         value="Full Name"
-                                        className="text-gray-300 font-medium mb-1.5 block"
+                                        className="text-slate-300 font-medium mb-1.5 block"
                                     />
                                     <TextInput
                                         id="name"
@@ -135,7 +135,7 @@ export default function Contact({ auth, status }) {
                                     <InputLabel
                                         htmlFor="email"
                                         value="Email Address"
-                                        className="text-gray-300 font-medium mb-1.5 block"
+                                        className="text-slate-300 font-medium mb-1.5 block"
                                     />
                                     <TextInput
                                         id="email"
@@ -155,7 +155,7 @@ export default function Contact({ auth, status }) {
                                     <InputLabel
                                         htmlFor="message"
                                         value="Project Requirements"
-                                        className="text-gray-300 font-medium mb-1.5 block"
+                                        className="text-slate-300 font-medium mb-1.5 block"
                                     />
                                     <textarea
                                         id="message"

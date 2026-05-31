@@ -1,7 +1,11 @@
 import { useState, useRef, useEffect } from "react";
 import axios from "axios";
+import { usePage } from "@inertiajs/react";
 
 export default function FloatingChatbot() {
+    const { props } = usePage();
+    const isLoggedIn = !!props.auth?.user;
+
     const [isOpen, setIsOpen] = useState(false);
     const [messages, setMessages] = useState([
         {
@@ -25,7 +29,6 @@ export default function FloatingChatbot() {
         }
     }, [messages, loading, isOpen]);
 
-    // Handle Outside Click-Away to close the bot smoothly
     useEffect(() => {
         function handleClickOutside(event) {
             if (
@@ -47,7 +50,6 @@ export default function FloatingChatbot() {
     }, [isOpen]);
 
     const handleSendMessage = async (e) => {
-        // CRITICAL: Stop the browser from attempting native GET submission form reloads
         e.preventDefault();
         e.stopPropagation();
 
@@ -61,7 +63,6 @@ export default function FloatingChatbot() {
         setLoading(true);
 
         try {
-            // Explicitly force POST context over Axios execution array
             const response = await axios({
                 method: "post",
                 url: route("chatbot.message"),
@@ -91,12 +92,15 @@ export default function FloatingChatbot() {
     return (
         <div
             ref={chatbotRef}
-            className="fixed bottom-6 right-6 z-50 font-sans text-white"
+            // Dynamic positioning: left-6 if logged in, right-6 if guest
+            className={`fixed bottom-6 z-50 font-sans text-white ${
+                isLoggedIn ? "left-6" : "right-6"
+            }`}
         >
             {/* Toggle Button Bubble */}
             {!isOpen && (
                 <button
-                    type="button" // Stops it from acting as a form processor button
+                    type="button"
                     onClick={(e) => {
                         e.preventDefault();
                         e.stopPropagation();
@@ -147,7 +151,7 @@ export default function FloatingChatbot() {
                         </button>
                     </div>
 
-                    {/* Messages Panel Container */}
+                    {/* Messages Panel */}
                     <div className="flex-grow p-4 overflow-y-auto space-y-3 bg-gradient-to-b from-transparent to-black/30">
                         {messages.map((msg, index) => (
                             <div
@@ -167,7 +171,6 @@ export default function FloatingChatbot() {
                                 </div>
                             </div>
                         ))}
-
                         {loading && (
                             <div className="flex justify-start">
                                 <div className="bg-zinc-900/80 border border-zinc-800 rounded-xl rounded-bl-none p-3 max-w-[60%] shadow-md">
@@ -182,7 +185,7 @@ export default function FloatingChatbot() {
                         <div ref={messagesEndRef} />
                     </div>
 
-                    {/* Terminal Form Input Area */}
+                    {/* Input Area */}
                     <form
                         onSubmit={handleSendMessage}
                         className="p-3 bg-zinc-900/40 border-t border-white/5"
@@ -197,7 +200,7 @@ export default function FloatingChatbot() {
                                 disabled={loading}
                             />
                             <button
-                                type="submit" // Trigger explicit onSubmit structural intercept
+                                type="submit"
                                 disabled={loading || !input.trim()}
                                 className="absolute right-2 bg-green-600 hover:bg-green-500 disabled:bg-zinc-800 disabled:text-zinc-600 text-black font-bold text-[10px] font-mono uppercase tracking-wider py-1 px-2.5 rounded transition-all"
                             >

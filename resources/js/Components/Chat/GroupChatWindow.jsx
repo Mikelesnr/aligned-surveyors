@@ -106,7 +106,7 @@ export default function GroupChatWindow({
     };
 
     return (
-        <div className="flex flex-col h-full bg-white">
+        <div className="flex flex-col text-slate-100 h-full bg-slate-850/90 border border-gray-300 rounded-2xl overflow-hidden shadow-sm">
             {/* Header */}
             <div className="p-6 border-b flex justify-between items-center">
                 <h2 className="text-2xl font-bold">#{group.name}</h2>
@@ -117,7 +117,7 @@ export default function GroupChatWindow({
                     {isGroupAdmin && (
                         <button
                             onClick={() => setShowAddModal(true)}
-                            className="bg-blue-600 text-white px-4 py-2 rounded-lg text-sm hover:bg-blue-700"
+                            className="bg-slate-600 text-slate-100 px-4 py-2 rounded-lg text-sm hover:bg-blue-700"
                         >
                             + Add Member
                         </button>
@@ -126,7 +126,7 @@ export default function GroupChatWindow({
             </div>
 
             {/* Message Stream */}
-            <div className="flex-1 overflow-y-auto p-6 space-y-4 bg-gray-50">
+            <div className="flex-1 overflow-y-auto p-6 space-y-4 bg-transparent">
                 {messages.map((msg) => {
                     const senderId = msg.sender?.id;
                     const isMe = parseInt(senderId) === parseInt(auth.user.id);
@@ -174,10 +174,10 @@ export default function GroupChatWindow({
             {/* Input Form */}
             <form
                 onSubmit={sendMessage}
-                className="p-6 border-t flex gap-4 bg-white"
+                className="p-6 border-t flex gap-4 bg-slate-850/50"
             >
                 <input
-                    className="flex-1 border rounded-full px-6 py-3 text-lg outline-none"
+                    className="flex-1 border rounded-full px-6 py-3 text-lg outline-none bg-slate-600 text-slate-100 border-gray-300 focus:ring-green-500 focus:border-green-500"
                     value={newMessage}
                     onChange={(e) => setNewMessage(e.target.value)}
                     placeholder="Type a message..."

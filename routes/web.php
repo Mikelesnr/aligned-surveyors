@@ -2,12 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use App\Models\User;
-use App\Models\Service;
-use App\Models\Client;
-use App\Models\Project;
-use App\Models\ProjectUpdate;
-use Inertia\Inertia;
+use App\Http\Controllers\DashboardController;
 
 // 1. Load Split Customer-Facing Routes File
 require __DIR__ . '/public.php';
@@ -19,23 +14,9 @@ require __DIR__ . '/admin_clients.php';
 require __DIR__ . '/admin_projects.php';
 
 // 3. Internal Protected Systems (To be fully integrated once frontend pages work)
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard', [
-        // Clean Guard: Filter out the logged-in user from the administrative view list
-        'users' => User::where('id', '!=', auth()->id())
-            ->orderBy('name')
-            ->get(['id', 'name', 'email', 'role', 'is_active', 'created_at']),
-
-        'services' => Service::orderBy('title')->get(['id', 'title', 'slug']),
-        'clients' => Client::orderBy('name')->get(['id', 'name', 'slug', 'is_visible']),
-        'projects' => Project::with(['service:id,title', 'client:id,name'])->latest()->get(),
-
-        // FILLS THE MISSING LINK: Fetches project updates with the project and author names attached
-        'projectUpdates' => ProjectUpdate::with(['project:id,project_title', 'user:id,name'])
-            ->latest()
-            ->get(),
-    ]);
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', [DashboardController::class, 'index'])
+    ->middleware(['auth', 'verified'])
+    ->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

@@ -20,10 +20,10 @@ export default function GroupSidebar({ groups, publicGroups, activeGroupId }) {
     };
 
     return (
-        <div className="w-full md:w-80 border-r border-gray-200 flex flex-col bg-white h-full shrink-0">
+        <div className="w-full md:w-80 border-r border-gray-200 flex flex-col bg-transparent h-full shrink-0">
             {/* Header */}
-            <div className="p-4 border-b border-gray-200 flex justify-between items-center bg-gray-50">
-                <h2 className="font-bold text-gray-700 uppercase tracking-wide text-xs">
+            <div className="p-4 border-b border-gray-200 flex justify-between items-center bg-slate-900/50">
+                <h2 className="font-bold text-slate-100 uppercase tracking-wide text-s">
                     My Groups
                 </h2>
                 <button
@@ -57,8 +57,8 @@ export default function GroupSidebar({ groups, publicGroups, activeGroupId }) {
                             href={route("chat.group.show", group.id)}
                             className={`block px-6 py-2 transition-colors ${
                                 activeGroupId === group.id
-                                    ? "bg-green-50 text-green-700 font-semibold"
-                                    : "text-gray-600 hover:bg-gray-50"
+                                    ? "bg-slate-600 text-slate-100 font-semibold"
+                                    : "text-slate-300 hover:bg-slate-950/50"
                             }`}
                         >
                             #{group.name}
@@ -68,7 +68,7 @@ export default function GroupSidebar({ groups, publicGroups, activeGroupId }) {
 
                 {/* Discover Section */}
                 <div className="border-t border-gray-200 pt-4">
-                    <h3 className="px-6 font-bold text-gray-400 text-xs uppercase tracking-wider mb-3">
+                    <h3 className="px-6 font-bold text-slate-400 text-xs uppercase tracking-wider mb-3">
                         Discover
                     </h3>
                     {publicGroups.map((group) => (
@@ -76,14 +76,14 @@ export default function GroupSidebar({ groups, publicGroups, activeGroupId }) {
                             key={group.id}
                             className="flex justify-between items-center px-6 py-2 group"
                         >
-                            <span className="text-sm text-gray-600">
+                            <span className="text-sm text-slate-400">
                                 #{group.name}
                             </span>
                             <button
                                 onClick={() =>
                                     post(route("groups.join", group.id))
                                 }
-                                className="text-xs bg-gray-50 hover:bg-green-600 hover:text-white text-gray-600 px-3 py-1 rounded-full transition-all"
+                                className="text-xs bg-slate-600 hover:bg-green-600 hover:text-white text-slate-400 px-3 py-1 rounded-full transition-all"
                             >
                                 Join
                             </button>
@@ -95,7 +95,7 @@ export default function GroupSidebar({ groups, publicGroups, activeGroupId }) {
             {/* Create Group Modal */}
             <Modal show={showModal} onClose={() => setShowModal(false)}>
                 <form onSubmit={submit} className="p-6">
-                    <h2 className="text-lg font-bold mb-4 text-gray-800">
+                    <h2 className="text-lg font-bold mb-4 text-slate-100">
                         Create New Group
                     </h2>
                     <input
@@ -103,7 +103,7 @@ export default function GroupSidebar({ groups, publicGroups, activeGroupId }) {
                         placeholder="Group Name"
                         value={data.name}
                         onChange={(e) => setData("name", e.target.value)}
-                        className="w-full mb-4 border-gray-300 rounded-lg focus:ring-green-500 focus:border-green-500"
+                        className="w-full mb-4 border-slate-500 rounded-lg focus:ring-green-500 focus:border-green-500"
                         required
                     />
                     {/* Restored Privacy Checkbox */}
@@ -116,7 +116,7 @@ export default function GroupSidebar({ groups, publicGroups, activeGroupId }) {
                             }
                             className="rounded border-gray-300 text-green-600 focus:ring-green-500"
                         />
-                        <span className="ml-2 text-sm text-gray-600">
+                        <span className="ml-2 text-sm text-slate-400">
                             Private Group
                         </span>
                     </label>
@@ -124,7 +124,7 @@ export default function GroupSidebar({ groups, publicGroups, activeGroupId }) {
                         <button
                             type="button"
                             onClick={() => setShowModal(false)}
-                            className="text-gray-500 hover:text-gray-700"
+                            className="text-slate-400 hover:text-slate-200"
                         >
                             Cancel
                         </button>
