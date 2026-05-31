@@ -51,9 +51,9 @@ export default function Footer() {
                     </p>
                     <p className="text-sm header-color">Harare, Zimbabwe</p>
                     <div className="mt-4 space-y-1">
-                        <p className="text-sm header-color2 font-medium">
+                        {/* <p className="text-sm header-color2 font-medium">
                             kknyandoro@alignedsurveyors.com
-                        </p>
+                        </p> */}
                         <p className="text-sm header-color2 font-medium">
                             kknyandoro@gmail.com
                         </p>
