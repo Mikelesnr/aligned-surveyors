@@ -3,7 +3,7 @@ import { Link } from "@inertiajs/react";
 
 export default function Footer() {
     return (
-        <footer className="bg-white header-color2 py-12 border-t border-gray-800">
+        <footer className="bg-white header-color2 py-12 border-t border-gray-800 text-center md:text-left">
             <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8">
                 {/* Company Info */}
                 <div>

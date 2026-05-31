@@ -121,7 +121,7 @@ export default function About({ auth, projects }) {
                                             <p className="text-sm font-medium text-slate-100 mb-4 mt-0.5">
                                                 {member.role}
                                             </p>
-                                            <p className="text-slate-300 leading-relaxed text-sm">
+                                            <p className="hidden md:block text-slate-300 leading-relaxed text-sm">
                                                 {member.bio}
                                             </p>
                                         </div>
