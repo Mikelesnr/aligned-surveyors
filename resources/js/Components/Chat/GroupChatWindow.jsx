@@ -116,7 +116,7 @@ export default function GroupChatWindow({
                 <div className="flex items-center gap-3 min-w-0 w-full md:w-auto justify-center md:justify-start">
                     {group.logo_url ? (
                         <img
-                            src={group.logo_url}
+                            src={url("/images/chat/group.png")}
                             alt={group.name}
                             className="w-8 h-8 rounded-full object-cover border border-slate-700"
                         />
