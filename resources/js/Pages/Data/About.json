@@ -13,32 +13,11 @@
             "image": "/images/team/kk_nyandoro.jpg"
         },
         {
-            "name": "Mr. H. Mutandi",
-            "role": "Engineering Surveyor",
-            "credentials": "Midlands State University (MSU)",
-            "bio": "Holds a BSc Honors Degree in Surveying and Geomatics from MSU. Brings 9 years of diverse, multi-cultural operational experience managing technical field survey deployments across Zimbabwe, Zambia, and Sudan.",
-            "image": "/images/team/h_mutandi.jpg"
-        },
-        {
-            "name": "Mr. R. Nyoni",
-            "role": "Engineering Surveyor",
-            "credentials": "Midlands State University (MSU)",
-            "bio": "Graduated with a BSc Honors Degree in Surveying and Geomatics from MSU in 2016. Leverages 6 years of focused technical expertise inside the road and building construction industries, supported by an advanced knowledge of top-tier hardware systems and South African spatial architectures.",
-            "image": "/images/team/r_nyoni.jpg"
-        },
-        {
             "name": "Mr. O.S. Mtetwa",
             "role": "Engineering Surveyor",
             "credentials": "University of Zimbabwe (UZ)",
             "bio": "A 2016 graduate with a BSc in Surveying and Geoinformatics from UZ. Accumulates 5 years of field operational experience across South Africa, Namibia, and Zimbabwe, with specific mastery in engineering, volumetric computation, topographical mappings, and modern UAV/Drone imagery workflows.",
             "image": "/images/team/os_mtetwa.jpg"
-        },
-        {
-            "name": "Mr. T. Gondo",
-            "role": "Geomatics Surveyor",
-            "credentials": "University of Zimbabwe (UZ)",
-            "bio": "A dedicated Geomatics surveyor holding a BSc Honors in Surveying and Geoinformatics from UZ (2016). Offers 6 years of industry expertise across bulk earthworks, reticulation, road engineering, and GIS mapping systems, while finalizing an MSc in Geomatics Engineering at the University of Zimbabwe.",
-            "image": "/images/team/t_gondo.jpg"
         },
         {
             "name": "Ms. B.T. Nemaramba",
