@@ -9,6 +9,7 @@ import { Autoplay } from "swiper/modules";
 import { useState } from "react";
 import Modal from "@/Components/Modal";
 import SectionHeader from "@/Components/SectionHeader";
+import SectionHeader2 from "@/Components/SectionHeader2";
 import "swiper/css";
 
 export default function Welcome({ auth }) {
@@ -83,7 +84,7 @@ export default function Welcome({ auth }) {
                             {/* Section Header */}
                             <div className="text-center mb-16">
                                 {/* Clean Component Import */}
-                                <SectionHeader
+                                <SectionHeader2
                                     tagline="Expertise"
                                     title="Our Services"
                                 />
@@ -252,7 +253,7 @@ export default function Welcome({ auth }) {
                     {/* Why Choose Us Section */}
                     <section
                         id="why-choose-us"
-                        className="bg-gray-900 py-20 px-6"
+                        className="bg-white bg-opacity-95 py-20 px-6"
                     >
                         <div className="container mx-auto">
                             {/* Clean Component Import */}
@@ -273,7 +274,7 @@ export default function Welcome({ auth }) {
                                                     {index + 1}.
                                                 </span>
                                                 <div>
-                                                    <h4 className="text-xl font-bold mb-1 text-white">
+                                                    <h4 className="text-xl font-bold mb-1 header-color2">
                                                         {benefit.title}
                                                     </h4>
                                                     <p className="header-color">
@@ -301,7 +302,7 @@ export default function Welcome({ auth }) {
                     <section className="py-20 px-6 animate-on-scroll">
                         <div className="container mx-auto">
                             {/* Clean Component Import */}
-                            <SectionHeader
+                            <SectionHeader2
                                 tagline="Case Studies"
                                 title="Featured Projects"
                             />
@@ -309,7 +310,7 @@ export default function Welcome({ auth }) {
                                 {data.featured_projects.map((p) => (
                                     <div
                                         key={p.id}
-                                        className="bg-gray-800 rounded-xl overflow-hidden border border-gray-700"
+                                        className="bg-white rounded-xl overflow-hidden border border-gray-700"
                                     >
                                         <img
                                             src={p.image}
@@ -317,10 +318,10 @@ export default function Welcome({ auth }) {
                                             className="w-full h-40 object-cover"
                                         />
                                         <div className="p-4">
-                                            <h4 className="font-bold">
+                                            <h4 className="font-bold header-color2">
                                                 {p.title}
                                             </h4>
-                                            <p className="text-gray-400 text-sm mt-1">
+                                            <p className="header-color text-sm mt-1">
                                                 {p.description}
                                             </p>
                                         </div>
@@ -331,7 +332,7 @@ export default function Welcome({ auth }) {
                     </section>
 
                     {/* Clients Slider (Gray Background) */}
-                    <section className="py-20 px-6 bg-gray-900 animate-on-scroll">
+                    <section className="py-20 px-6 bg-white animate-on-scroll">
                         <div className="container mx-auto text-center">
                             {/* Clean Component Import for Clients Section */}
                             <SectionHeader
@@ -361,7 +362,7 @@ export default function Welcome({ auth }) {
                                     >
                                         <div className="flex flex-col items-center gap-3">
                                             {/* Logo Container */}
-                                            <div className="bg-black/20 p-6 rounded-xl w-32 h-32 flex items-center justify-center border border-white/5 hover:border-blue-500 transition-colors">
+                                            <div className="client-bg p-6 rounded-xl w-32 h-32 flex items-center justify-center border border-white/5 hover:border-blue-500 transition-colors">
                                                 <img
                                                     src={client.logo}
                                                     alt={client.name}
@@ -370,7 +371,7 @@ export default function Welcome({ auth }) {
                                             </div>
 
                                             {/* Styled Name */}
-                                            <span className="text-xs font-medium text-gray-400 group-hover:text-blue-500 transition-colors text-center px-2">
+                                            <span className="text-s font-medium header-color group-hover:text-blue-500 transition-colors text-center px-2">
                                                 {client.name}
                                             </span>
                                         </div>
@@ -384,7 +385,7 @@ export default function Welcome({ auth }) {
                     <section className="py-16 px-6">
                         <div className="container mx-auto max-w-4xl">
                             <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-3xl p-10 text-center animate-on-scroll">
-                                <SectionHeader
+                                <SectionHeader2
                                     tagline="Get in Touch"
                                     title="Ready to Start Your Next Project?"
                                 />

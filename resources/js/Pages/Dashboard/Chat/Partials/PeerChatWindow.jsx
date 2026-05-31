@@ -7,8 +7,8 @@ export default function PeerChatWindow({ auth, conversation }) {
     const [newMessage, setNewMessage] = useState("");
     const scrollRef = useRef(null);
 
-    const myColor = "bg-green-700";
-    const peerColor = "bg-white border border-gray-300";
+    const myColor = "bg-green-700 border border-gray-300 text-white";
+    const peerColor = "bg-red-900 border border-gray-300 text-slate-100";
     const myText = "text-white";
     const peerText = "text-gray-900";
 
@@ -49,7 +49,7 @@ export default function PeerChatWindow({ auth, conversation }) {
     };
 
     return (
-        <div className="flex flex-col h-full bg-gray-100 border border-gray-300 rounded-2xl overflow-hidden shadow-sm">
+        <div className="flex flex-col h-full bg-slate-850/90 border border-gray-300 rounded-2xl overflow-hidden shadow-sm">
             <div className="flex-1 p-6 overflow-y-auto space-y-2">
                 {messages.map((msg) => {
                     const isMe = String(msg.sender.id) === String(auth.user.id);
@@ -69,13 +69,13 @@ export default function PeerChatWindow({ auth, conversation }) {
 
             <form
                 onSubmit={handleSend}
-                className="p-4 border-t border-gray-300 bg-white flex gap-3"
+                className="p-4 border-t border-gray-300 bg-slate-850/90 flex gap-3"
             >
                 <input
                     type="text"
                     value={newMessage}
                     onChange={(e) => setNewMessage(e.target.value)}
-                    className="flex-1 bg-gray-50 border border-gray-300 rounded-full px-5 py-3 text-lg outline-none"
+                    className="flex-1 bg-slate-600 border border-gray-300 rounded-full px-5 py-3 text-slate-50 text-lg outline-none"
                     placeholder="Type a message..."
                 />
                 <button

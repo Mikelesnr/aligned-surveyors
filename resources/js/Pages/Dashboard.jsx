@@ -30,13 +30,12 @@ export default function Dashboard({
                 title={isAdminMode ? "Admin Control Panel" : "Staff Workspace"}
             />
 
-            <div className="py-6 min-h-screen bg-zinc-950 text-white font-sans antialiased">
+            <div className="py-6 min-h-screen bg-slate-950/90 text-white font-sans antialiased">
                 <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
                     {isAdminMode ? (
                         /* Render the master management pane for administrators */
                         <AdminDashboard
                             auth={auth}
-                            users={users || []}
                             services={services || []}
                             clients={clients || []}
                             projects={projects || []}
