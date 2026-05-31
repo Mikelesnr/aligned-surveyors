@@ -65,7 +65,7 @@ export default function About({ auth, projects }) {
 
                     {/* 2. Solid "Our People" Section using standard structural background backing matching Welcome */}
                     <section className="py-24 px-6 bg-white border-t border-b border-white/5 relative z-10">
-                        <div className="container mx-auto max-w-5xl">
+                        <div className="container mx-auto max-w-5xl bg-slate-100/80 backdrop-blur-md border border-white/10 rounded-3xl p-12 relative z-10">
                             <SectionHeader
                                 tagline="Leadership & Expertise"
                                 title="Our People"
@@ -75,7 +75,7 @@ export default function About({ auth, projects }) {
                                 {aboutData.team.map((member, index) => (
                                     <div
                                         key={index}
-                                        className="client-bg backdrop-blur-md border border-white/10 rounded-2xl p-8 hover:border-blue-500/30 transition-all duration-300 relative group shadow-xl flex flex-col md:flex-row gap-6 items-start animate-on-scroll opacity-0 translate-y-4"
+                                        className="bg-slate-950/40 backdrop-blur-md border border-white/10 rounded-2xl p-8 transition-all duration-500 ease-[cubic-bezier(0.175,0.885,0.32,1.275)] hover:border-blue-500/60 hover:-translate-y-6 hover:scale-[1.05] hover:shadow-2xl hover:shadow-blue-500/20 relative group shadow-xl flex flex-col md:flex-row gap-6 items-start animate-on-scroll opacity-0 translate-y-4"
                                         style={{
                                             transitionDelay: `${index * 150}ms`,
                                         }}
@@ -121,7 +121,7 @@ export default function About({ auth, projects }) {
                                             <p className="text-sm font-medium text-slate-100 mb-4 mt-0.5">
                                                 {member.role}
                                             </p>
-                                            <p className="text-slate-300 leading-relaxed text-sm">
+                                            <p className="hidden md:block text-slate-300 leading-relaxed text-sm">
                                                 {member.bio}
                                             </p>
                                         </div>
@@ -145,7 +145,7 @@ export default function About({ auth, projects }) {
                                     .map((project, index) => (
                                         <div
                                             key={project.id}
-                                            className="bg-gradient-to-b from-zinc-900/40 to-zinc-950/60 backdrop-blur-md border border-white/10 rounded-2xl p-8 flex flex-col justify-between transition-all duration-300 hover:border-blue-500/40 hover:-translate-y-1 group relative shadow-lg animate-on-scroll opacity-0 translate-y-4"
+                                            className="bg-gradient-to-b from-zinc-900/40 to-zinc-950/60 backdrop-blur-md border border-white/10 rounded-2xl p-8 flex flex-col justify-between transition-all duration-500 ease-[cubic-bezier(0.175,0.885,0.32,1.275)] hover:border-blue-500/80 hover:-translate-y-10 hover:scale-[1.2] hover:shadow-2xl hover:shadow-blue-500/40 group relative animate-on-scroll opacity-0 translate-y-4"
                                             style={{
                                                 transitionDelay: `${index * 100}ms`,
                                             }}
@@ -171,7 +171,7 @@ export default function About({ auth, projects }) {
                                                     {project.project_title}
                                                 </h3>
 
-                                                <p className="text-gray-400 text-sm leading-relaxed mb-6">
+                                                <p className="text-gray-400 text-sm leading-relaxed mb-6 transition-colors duration-300 group-hover:text-white">
                                                     {project.project_description ||
                                                         "High-precision engineering and spatial survey operations delivered to compliance specification."}
                                                 </p>
