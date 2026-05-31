@@ -17,10 +17,10 @@ export default function Dashboard({
         <AuthenticatedLayout
             header={
                 <div className="flex items-center justify-between">
-                    <h2 className="text-xl font-mono font-bold uppercase tracking-wider text-white">
+                    <h2 className="text-xl font-mono font-bold uppercase tracking-wider heading-color2">
                         System Workspace Terminal
                     </h2>
-                    <span className="font-mono text-[10px] uppercase tracking-widest px-2.5 py-0.5 rounded border border-zinc-800 bg-zinc-900 text-zinc-400">
+                    <span className="font-mono text-[10px] uppercase tracking-widest px-2.5 py-0.5 rounded border border-zinc-800 bg-slate-950/50 text-gray-100">
                         Operator: {auth.user.name} ({auth.user.role})
                     </span>
                 </div>
