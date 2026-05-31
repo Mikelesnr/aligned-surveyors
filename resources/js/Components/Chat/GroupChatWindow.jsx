@@ -25,13 +25,11 @@ export default function GroupChatWindow({
     const [selectedUserId, setSelectedUserId] = useState("");
     const scrollRef = useRef(null);
 
-    // Ensure isPersonnel is defined as before
     const isPersonnel = useMemo(
         () => ["admin", "staff"].includes(auth.user.role),
         [auth.user.role],
     );
 
-    // Map sender IDs to colors using the 'members' relationship
     const userColorMap = useMemo(() => {
         const map = {};
         group.members?.forEach((user, index) => {
@@ -58,33 +56,38 @@ export default function GroupChatWindow({
     }, [group.id]);
 
     useEffect(() => {
-        scrollRef.current?.scrollIntoView({ behavior: "smooth" });
+        // Only scroll if the user is already near the bottom
+        const container = scrollRef.current?.parentElement;
+        if (container) {
+            const isAtBottom =
+                container.scrollHeight - container.scrollTop <=
+                container.clientHeight + 100;
+            if (isAtBottom) {
+                scrollRef.current?.scrollIntoView({ behavior: "smooth" });
+            }
+        }
     }, [messages]);
 
     const sendMessage = (e) => {
         e.preventDefault();
         if (!newMessage.trim()) return;
 
-        // 1. Create a temporary message object for instant UI update
         const tempMessage = {
-            id: Date.now(), // Temporary ID
+            id: Date.now(),
             message_text: newMessage,
-            sender: auth.user, // Ensure the current user is shown as the sender
+            sender: auth.user,
             created_at: new Date().toISOString(),
         };
 
-        // 2. Update state immediately
         setMessages((prev) => [...prev, tempMessage]);
         const text = newMessage;
         setNewMessage("");
 
-        // 3. Send to backend
         axios
             .post(route("groups.messages.store", group.id), {
                 message_text: text,
             })
             .catch(() => {
-                // If it fails, remove the temporary message
                 setMessages((prev) =>
                     prev.filter((m) => m.id !== tempMessage.id),
                 );
@@ -108,25 +111,52 @@ export default function GroupChatWindow({
     return (
         <div className="flex flex-col text-slate-100 h-full bg-slate-850/90 border border-gray-300 rounded-2xl overflow-hidden shadow-sm">
             {/* Header */}
-            <div className="p-6 border-b flex justify-between items-center">
-                <h2 className="text-2xl font-bold">#{group.name}</h2>
-                <div className="flex gap-2">
-                    {/* Render the component */}
-                    <MeetingAction group={group} isPersonnel={isPersonnel} />
+            <div className="p-4 border-b flex flex-col md:flex-row justify-between items-center gap-3">
+                {/* Group Info - min-w-0 allows truncation */}
+                <div className="flex items-center gap-3 min-w-0 w-full md:w-auto justify-center md:justify-start">
+                    {group.logo_url ? (
+                        <img
+                            src={group.logo_url}
+                            alt={group.name}
+                            className="w-8 h-8 rounded-full object-cover border border-slate-700"
+                        />
+                    ) : (
+                        <div className="w-8 h-8 rounded-full bg-slate-700 flex items-center justify-center text-xs font-bold shrink-0">
+                            {group.name.charAt(0).toUpperCase()}
+                        </div>
+                    )}
+                    <h2 className="text-lg md:text-2xl font-bold truncate">
+                        {group.name}
+                    </h2>
+                </div>
 
-                    {isGroupAdmin && (
+                {/* Responsive Button Row */}
+                <div className="flex items-center gap-2 w-full md:w-auto justify-center md:justify-end shrink-0">
+                    <div className="shrink">
+                        <MeetingAction
+                            group={group}
+                            isPersonnel={isPersonnel}
+                            isGroupAdmin={isGroupAdmin}
+                            onAddMember={() => setShowAddModal(true)}
+                        />
+                    </div>
+
+                    {/* {isGroupAdmin && (
                         <button
                             onClick={() => setShowAddModal(true)}
-                            className="bg-slate-600 text-slate-100 px-4 py-2 rounded-lg text-sm hover:bg-blue-700"
+                            className="bg-slate-600 text-slate-100 px-3 py-2 rounded-lg text-xs hover:bg-blue-700 shrink-0"
                         >
-                            + Add Member
+                            <span className="md:hidden">+ Add</span>
+                            <span className="hidden md:inline">
+                                + Add Member
+                            </span>
                         </button>
-                    )}
+                    )} */}
                 </div>
             </div>
 
             {/* Message Stream */}
-            <div className="flex-1 overflow-y-auto p-6 space-y-4 bg-transparent">
+            <div className="flex-1 overflow-y-auto p-4 md:p-6 space-y-4 bg-transparent min-h-0">
                 {messages.map((msg) => {
                     const senderId = msg.sender?.id;
                     const isMe = parseInt(senderId) === parseInt(auth.user.id);
@@ -135,9 +165,7 @@ export default function GroupChatWindow({
                         text: "text-white",
                     };
 
-                    // Detect if this is a meeting alert message
                     const isMeetingAlert = !!msg.is_meeting_alert;
-                    console.log({ isMeetingAlert, msg });
 
                     return (
                         <ChatBubble
@@ -148,7 +176,6 @@ export default function GroupChatWindow({
                             textColor={isMe ? "text-white" : colors.text}
                             showName={!isMe}
                         >
-                            {/* Conditionally render HTML if it's an alert, otherwise plain text */}
                             {isMeetingAlert ? (
                                 <div className="p-3 bg-blue-50 border-l-4 border-blue-500 rounded-md">
                                     <p className="font-semibold text-blue-900">
@@ -174,17 +201,17 @@ export default function GroupChatWindow({
             {/* Input Form */}
             <form
                 onSubmit={sendMessage}
-                className="p-6 border-t flex gap-4 bg-slate-850/50"
+                className="p-4 md:p-6 border-t flex gap-2 md:gap-4 bg-slate-850/50"
             >
                 <input
-                    className="flex-1 border rounded-full px-6 py-3 text-lg outline-none bg-slate-600 text-slate-100 border-gray-300 focus:ring-green-500 focus:border-green-500"
+                    className="flex-1 border rounded-full px-4 md:px-6 py-2 md:py-3 text-sm md:text-lg outline-none bg-slate-600 text-slate-100 border-gray-300 focus:ring-green-500 focus:border-green-500"
                     value={newMessage}
                     onChange={(e) => setNewMessage(e.target.value)}
-                    placeholder="Type a message..."
+                    placeholder="Message..."
                 />
                 <button
                     type="submit"
-                    className="bg-green-600 text-white px-8 py-3 rounded-full font-bold"
+                    className="bg-green-600 text-white px-4 md:px-8 py-2 md:py-3 rounded-full font-bold text-sm md:text-base"
                 >
                     Send
                 </button>
@@ -197,7 +224,7 @@ export default function GroupChatWindow({
                     <select
                         value={selectedUserId}
                         onChange={(e) => setSelectedUserId(e.target.value)}
-                        className="w-full mb-4 border rounded p-2"
+                        className="w-full mb-4 border rounded p-2 text-black"
                         required
                     >
                         <option value="">Select a user...</option>
