@@ -19,7 +19,6 @@ RUN npm run build
 FROM php:8.3-fpm-alpine
 
 # Install system dependencies, Nginx, Supervisor, and database client headers
-# Includes postgresql-dev so Alpine can compile the pdo_pgsql driver natively
 RUN apk add --no-cache \
     nginx \
     supervisor \
@@ -59,14 +58,22 @@ WORKDIR /var/www
 COPY . .
 
 # COPY THE COMPILED REACT ASSETS FROM STAGE 1
-# This drops the freshly built assets straight into Laravel's public directory
 COPY --from=frontend-builder /app/public/build ./public/build
 
-# Install Composer dependencies cleanly for an optimized production environment
-COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
-RUN composer install --no-dev --optimize-autoloader --no-interaction --no-progress
+# 1. Ensure the directories exist BEFORE running composer scripts
+RUN mkdir -p storage bootstrap/cache
 
-# Ensure strict secure execution permissions for Laravel's cache and storage architecture
+# 2. Grab the latest Composer binary
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+
+# 3. CRITICAL: Install dependencies WITHOUT running automated scripts
+# This bypasses the breaking 'package:discover' hook until permissions are ready.
+RUN composer install --no-dev --no-scripts --optimize-autoloader --no-interaction --no-progress
+
+# 54. NOW run the autoload dump manually since permissions and directories are fully ready
+RUN composer dump-autoload --optimize
+
+# 45. Set strict, secure permissions for Laravel's system directories
 RUN chmod -R 775 storage bootstrap/cache \
     && chown -R www-data:www-data /var/www
 
@@ -78,7 +85,6 @@ COPY ./docker/entrypoint.sh /usr/local/bin/entrypoint.sh
 # Grant execution permissions to the runtime entrypoint script
 RUN chmod +x /usr/local/bin/entrypoint.sh
 
-# Expose the internal container communication port (Render overrides this with $PORT dynamically)
 EXPOSE 8080
 
 ENTRYPOINT ["entrypoint.sh"]
