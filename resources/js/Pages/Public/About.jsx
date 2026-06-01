@@ -64,7 +64,10 @@ export default function About({ auth, projects }) {
                     </section>
 
                     {/* 2. Solid "Our People" Section using standard structural background backing matching Welcome */}
-                    <section className="py-24 px-6 bg-white border-t border-b border-white/5 relative z-10">
+                    <section
+                        className="py-24 px-6 bg-white border-t border-b border-white/5 relative z-10"
+                        id="team"
+                    >
                         <div className="container mx-auto max-w-5xl bg-slate-100/80 backdrop-blur-md border border-white/10 rounded-3xl p-12 relative z-10">
                             <SectionHeader
                                 tagline="Leadership & Expertise"
@@ -132,7 +135,10 @@ export default function About({ auth, projects }) {
                     </section>
 
                     {/* 3. Transparent "Our Projects" Card Grid Section matching Services structure */}
-                    <section className="py-24 px-6 relative overflow-hidden bg-transparent">
+                    <section
+                        id="projects"
+                        className="py-24 px-6 relative overflow-hidden bg-transparent"
+                    >
                         <div className="container mx-auto max-w-6xl relative z-10">
                             <SectionHeader2
                                 tagline="Operations Track Record"

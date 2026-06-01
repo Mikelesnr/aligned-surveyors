@@ -89,17 +89,20 @@ export default function Contact({ auth, status }) {
                                 <div className="flex items-center space-x-3 group">
                                     <span className="text-blue-500">✉️</span>
                                     <a
-                                        href="mailto:kknyandoro@alignedsurveyors.com"
+                                        href="mailto:kknyandoro@gmail.com"
                                         className="header-color group-hover:text-white transition-colors break-all"
                                     >
-                                        kknyandoro@alignedsurveyors.com
+                                        kknyandoro@gmail.com
                                     </a>
                                 </div>
                             </div>
                         </div>
 
                         {/* Right Column: Premium Form Card */}
-                        <div className="md:col-span-7 bg-gradient-to-b from-slate-900/60 to-slate-950/60 backdrop-blur-md border border-white/10 rounded-2xl p-8 shadow-xl relative group animate-on-scroll opacity-0 translate-y-4 transition-all duration-700 delay-150">
+                        <div
+                            id="form-container"
+                            className="md:col-span-7 bg-gradient-to-b from-slate-900/60 to-slate-950/60 backdrop-blur-md border border-white/10 rounded-2xl p-8 shadow-xl relative group animate-on-scroll opacity-0 translate-y-4 transition-all duration-700 delay-150"
+                        >
                             {/* Decorative Top Accent Glow Strip */}
                             <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-blue-500/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity rounded-t-2xl" />
 

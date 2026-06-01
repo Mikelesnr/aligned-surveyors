@@ -8,14 +8,14 @@
         {
             "name": "Mr. K.K. Nyandoro",
             "role": "Principal Engineering Surveyor",
-            "credentials": "University of Zimbabwe (UZ)",
+            "credentials": "BSc Hons Geoinformatics & Land Surveying (UZ)",
             "bio": "A pioneering professional trained at the University of Zimbabwe with active field tenure dating back to 2012. Offers more than 8 years of specialized regional experience executing both simple and highly complex topographical, infrastructural, and engineering arrays across Zimbabwe and the SADC region (including Namibia).",
             "image": "/images/team/kk_nyandoro.jpg"
         },
         {
             "name": "Mr. O.S. Mtetwa",
             "role": "Engineering Surveyor",
-            "credentials": "University of Zimbabwe (UZ)",
+            "credentials": "BSc Hons Geoinformatics & Land Surveying (UZ)",
             "bio": "A 2016 graduate with a BSc in Surveying and Geoinformatics from UZ. Accumulates 5 years of field operational experience across South Africa, Namibia, and Zimbabwe, with specific mastery in engineering, volumetric computation, topographical mappings, and modern UAV/Drone imagery workflows.",
             "image": "/images/team/os_mtetwa.jpg"
         },
@@ -29,7 +29,7 @@
         {
             "name": "Mr. T.G. Chivhuro",
             "role": "Engineering Surveyor",
-            "credentials": "BSc Hons Geoinformatics & Land Surveying",
+            "credentials": "BSc Hons Geoinformatics & Land Surveying (UZ)",
             "bio": "A dedicated and technically proficient Engineering Surveyor with a strong academic foundation in Geoinformatics and Land Surveying. Committed to delivering precise, reliable, and high-quality surveying solutions that support complex infrastructure and development projects with unwavering professionalism and technical accuracy.",
             "image": "/images/team/tafara_chivhuro.jpg"
         }
