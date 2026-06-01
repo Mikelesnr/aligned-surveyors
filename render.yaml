@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: aligned-surveyors
+    env: docker
+    repo: https://github.com/Mikelesnr/aligned-surveyors
+    plan: free
+    region: frankfurt
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    preDeployCommand: ""
