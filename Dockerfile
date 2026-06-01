@@ -60,22 +60,25 @@ COPY . .
 # COPY THE COMPILED REACT ASSETS FROM STAGE 1
 COPY --from=frontend-builder /app/public/build ./public/build
 
-# 1. Ensure the directories exist BEFORE running composer scripts
-RUN mkdir -p storage bootstrap/cache
+# 1. Force-create resources/views and system directories to guarantee they exist
+RUN mkdir -p storage bootstrap/cache resources/views
 
 # 2. Grab the latest Composer binary
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-# 3. CRITICAL: Install dependencies WITHOUT running automated scripts
-# This bypasses the breaking 'package:discover' hook until permissions are ready.
+# 3. Explicitly set permissions BEFORE running optimizations so the user context matches
+RUN chown -R www-data:www-data /var/www \
+    && chmod -R 775 storage bootstrap/cache
+
+# 4. Install dependencies WITHOUT running automated scripts or hooks
 RUN composer install --no-dev --no-scripts --optimize-autoloader --no-interaction --no-progress
 
-# 54. NOW run the autoload dump manually since permissions and directories are fully ready
-RUN composer dump-autoload --optimize
+# 5. Build production optimizations safely (Avoids the breaking view-clear during image assembly)
+RUN php artisan config:cache \
+    && php artisan route:cache
 
-# 45. Set strict, secure permissions for Laravel's system directories
-RUN chmod -R 775 storage bootstrap/cache \
-    && chown -R www-data:www-data /var/www
+# 6. Finalize background autoload mappings
+RUN composer dump-autoload --optimize
 
 # Copy structural infrastructure configuration files into place
 COPY ./docker/nginx.conf /etc/nginx/http.d/default.conf
