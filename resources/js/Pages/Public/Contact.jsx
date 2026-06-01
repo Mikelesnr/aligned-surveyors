@@ -89,10 +89,10 @@ export default function Contact({ auth, status }) {
                                 <div className="flex items-center space-x-3 group">
                                     <span className="text-blue-500">✉️</span>
                                     <a
-                                        href="mailto:kknyandoro@alignedsurveyors.com"
+                                        href="mailto:kknyandoro@gmail.com"
                                         className="header-color group-hover:text-white transition-colors break-all"
                                     >
-                                        kknyandoro@alignedsurveyors.com
+                                        kknyandoro@gmail.com
                                     </a>
                                 </div>
                             </div>

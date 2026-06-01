@@ -51,14 +51,10 @@ export default function Footer() {
                     </p>
                     <p className="text-sm header-color">Harare, Zimbabwe</p>
                     <div className="mt-4 space-y-1">
-                        {/* <p className="text-sm header-color2 font-medium">
-                            kknyandoro@alignedsurveyors.com
-                        </p> */}
                         <p className="text-sm header-color2 font-medium">
                             kknyandoro@gmail.com
                         </p>
                         <p className="text-sm header-color">+263 773 970 507</p>
-                        <p className="text-sm header-color">+263 716 726 596</p>
                     </div>
                 </div>
             </div>
