@@ -25,6 +25,13 @@
             "credentials": "ZSM & Bindura University",
             "bio": "An energetic, highly motivated mining professional holding a National Diploma from the Zimbabwe School of Mines along with a BSc Honors from Bindura University. Highly skilled in managing intensive underground and open-pit mine development layouts, statistical data controls, and technical research applications.",
             "image": "/images/team/bt_nemaramba.jpg"
+        },
+        {
+            "name": "Mr. T.G. Chivhuro",
+            "role": "Engineering Surveyor",
+            "credentials": "BSc Hons Geoinformatics & Land Surveying",
+            "bio": "A dedicated and technically proficient Engineering Surveyor with a strong academic foundation in Geoinformatics and Land Surveying. Committed to delivering precise, reliable, and high-quality surveying solutions that support complex infrastructure and development projects with unwavering professionalism and technical accuracy.",
+            "image": "/images/team/tafara_chivhuro.jpg"
         }
     ]
 }
