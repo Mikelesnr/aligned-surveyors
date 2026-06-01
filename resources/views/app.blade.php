@@ -13,6 +13,11 @@
         <meta name="developer" content="Michael Mwanza">
         <link rel="author" href="https://michaelmwanza.site">
 
+        <meta name="author" content="Kuzivakwashe Kennedy Nyandoro">
+        <meta property="og:profile:first_name" content="Kuzivakwashe Kennedy">
+        <meta property="og:profile:last_name" content="Nyandoro">
+        <meta property="og:profile:username" content="kuzivakwashe-kennedy-nyandoro-3b827a93">
+
         <meta property="og:type" content="website">
         <meta property="og:url" content="https://alignedsurveyors.co.zw/">
         <meta property="og:title" content="Aligned Surveyors | Precision Land Surveying & Mapping">
@@ -36,7 +41,25 @@
         <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
         <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
         <link rel="manifest" href="/images/site.webmanifest">
-        <script src="https://meet.jit.si/external_api.js" defer></script>
+        <script defer src="https://meet.jit.si/external_api.js" defer></script>
+        <script type="application/ld+json">
+            {
+            "@context": "https://schema.org",
+            "@type": "LocalBusiness",
+            "name": "Aligned Surveyors",
+            "url": "https://alignedsurveyors.co.zw",
+            "logo": "https://alignedsurveyors.co.zw/images/logo.png",
+            "founder": {
+                "@type": "Person",
+                "name": "Kuzivakwashe Kennedy Nyandoro",
+                "jobTitle": "Principal / Owner",
+                "sameAs": "https://www.linkedin.com/in/kuzivakwashe-kennedy-nyandoro-3b827a93/"
+            },
+            "sameAs": [
+                "https://www.linkedin.com/in/kuzivakwashe-kennedy-nyandoro-3b827a93/"
+            ]
+            }
+        </script>
 
         <!-- Scripts -->
         @routes
