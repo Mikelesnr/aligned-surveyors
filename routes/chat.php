@@ -8,6 +8,7 @@ use App\Http\Controllers\JitsiTokenController;
 use App\Models\User;
 use App\Models\Conversation;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 
 /*
@@ -48,7 +49,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     // Independent workspace console renderer
     Route::get('/workspace/communications', function () {
-        $authId = auth()->id();
+        $authId = Auth::id();
 
         return Inertia::render('Dashboard/Chat/Index', [
             // Feed active operators directory list
@@ -69,7 +70,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
                 }),
 
             // Load authorized multi-tenant channel rooms
-            'groups' => auth()->user()->groupMemberships()
+            'groups' => Auth::user()->groupMemberships()
                 ->orderBy('groups.name')
                 ->get(['groups.id', 'groups.name', 'groups.creator_id']),
         ]);
