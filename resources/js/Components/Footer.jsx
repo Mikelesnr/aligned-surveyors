@@ -25,20 +25,44 @@ export default function Footer() {
                     <h3 className="text-xl font-semibold mb-3">Quick Links</h3>
                     <ul className="space-y-2 text-sm header-color">
                         <li>
-                            <a
-                                href="#why-choose-us"
+                            <Link
+                                href="/#why-choose-us"
                                 className="hover:text-blue-500 transition-colors"
                             >
                                 Why Choose Us
-                            </a>
+                            </Link>
                         </li>
                         <li>
-                            <a
+                            <Link
+                                href="/#services"
+                                className="hover:text-blue-500 transition-colors"
+                            >
+                                Our Services
+                            </Link>
+                        </li>
+                        <li>
+                            <Link
+                                href="/about/#team"
+                                className="hover:text-blue-500 transition-colors"
+                            >
+                                Our People
+                            </Link>
+                        </li>
+                        <li>
+                            <Link
+                                href="/about/#projects"
+                                className="hover:text-blue-500 transition-colors"
+                            >
+                                Our Work
+                            </Link>
+                        </li>
+                        <li>
+                            <Link
                                 href="#contact"
                                 className="hover:text-blue-100 transition-colors"
                             >
                                 Contact
-                            </a>
+                            </Link>
                         </li>
                     </ul>
                 </div>
