@@ -11,12 +11,12 @@ export default function Footer() {
                         Aligned Surveyors
                     </h3>
                     <p className="text-sm header-color leading-relaxed">
-                        "Impossible Is Impossible With Us."[cite: 1, 2]
-                        <br />
-                        <br />
+                        "Impossible Is Impossible With Us."
+                        <br/>
+                        <br/>
                         An engineering Surveying Consultancy firm established in
                         2017, providing solutions in spatial and infrastructure
-                        development.[cite: 1, 2]
+                        development.
                     </p>
                 </div>
 
@@ -71,17 +71,17 @@ export default function Footer() {
                 <div>
                     <h3 className="text-xl font-semibold mb-3">Contact Us</h3>
                     <p className="text-sm header-color">
-                        9 Lincoln Court, Belgravia[cite: 1, 2]
+                        9 Lincoln Court, Belgravia
                     </p>
                     <p className="text-sm header-color">
-                        Harare, Zimbabwe[cite: 1, 2]
+                        Harare, Zimbabwe
                     </p>
                     <div className="mt-4 space-y-1">
                         <p className="text-sm header-color2 font-medium">
-                            kknyandoro@gmail.com[cite: 1, 2]
+                            kknyandoro@gmail.com
                         </p>
                         <p className="text-sm header-color">
-                            +263 773 970 507[cite: 1, 2]
+                            +263 773 970 507
                         </p>
                     </div>
 
@@ -150,7 +150,7 @@ export default function Footer() {
 
             <div className="mt-12 pt-8 border-t border-gray-800 text-center text-xs header-color">
                 &copy; {new Date().getFullYear()} Aligned Surveyors (PVT)
-                LTD.[cite: 1, 2] All rights reserved.
+                LTD. All rights reserved.
             </div>
         </footer>
     );
