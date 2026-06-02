@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Aligned Surveyors | Professional Land Surveying Services Zimbabwe</title>
         <meta name="description" content="Aligned Surveyors offers high-precision land surveying, engineering surveys, topographic mapping, and cadastral solutions for infrastructure and property development projects across Zimbabwe.">
-        <meta name="keywords" content="land survey companies in zimbabwe, professional land surveyors harare, cadastral surveys zimbabwe, topographic mapping harare, engineering surveyors zimbabwe, site set out services, boundary verification zimbabwe, surveying firms harare">
+        <meta name="keywords" content="land survey companies in zimbabwe, professional land surveyors harare, cadastral surveys zimbabwe, topographic mapping harare, engineering surveyors zimbabwe, site set out services, boundary verification zimbabwe, surveying firms harare, surveyors in harare, Surveyors in mutare, top surveyors in harare zimbabwe, diverse surveyors in zimbabwe, drone pilots surveyors, mine surveyors in zimbabwe, hydrographic surveyors zimbabwe, construction surveyors zimbabwe, geodetic surveyors zimbabwe, land subdivision surveyors zimbabwe, topographic surveyors zimbabwe, boundary surveyors zimbabwe, engineering surveyors zimbabwe, cadastral surveyors zimbabwe, property surveyors zimbabwe, topographic mapping services zimbabwe, land surveying services zimbabwe, professional land surveying companies in harare, accurate land surveys in zimbabwe, reliable land surveying firms in harare">
         <meta name="robots" content="index, follow">
         <meta name="language" content="English">
         <meta name="author" content="Michael Mwanza">
