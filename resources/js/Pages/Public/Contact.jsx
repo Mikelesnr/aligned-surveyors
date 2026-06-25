@@ -89,6 +89,15 @@ export default function Contact({ auth, status }) {
                                 <div className="flex items-center space-x-3 group">
                                     <span className="text-blue-500">✉️</span>
                                     <a
+                                        href="mailto:kknyandoro@alignedsurveyors.co.zw"
+                                        className="header-color group-hover:text-white transition-colors break-all"
+                                    >
+                                        kknyandoro@alignedsurveyors.co.zw
+                                    </a>
+                                </div>
+                                <div className="flex items-center space-x-3 group">
+                                    <span className="text-blue-500">✉️</span>
+                                    <a
                                         href="mailto:kknyandoro@gmail.com"
                                         className="header-color group-hover:text-white transition-colors break-all"
                                     >

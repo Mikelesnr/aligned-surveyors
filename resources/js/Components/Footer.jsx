@@ -12,8 +12,8 @@ export default function Footer() {
                     </h3>
                     <p className="text-sm header-color leading-relaxed">
                         "Impossible Is Impossible With Us."
-                        <br/>
-                        <br/>
+                        <br />
+                        <br />
                         An engineering Surveying Consultancy firm established in
                         2017, providing solutions in spatial and infrastructure
                         development.
@@ -73,16 +73,25 @@ export default function Footer() {
                     <p className="text-sm header-color">
                         9 Lincoln Court, Belgravia
                     </p>
-                    <p className="text-sm header-color">
-                        Harare, Zimbabwe
-                    </p>
+                    <p className="text-sm header-color">Harare, Zimbabwe</p>
                     <div className="mt-4 space-y-1">
                         <p className="text-sm header-color2 font-medium">
-                            kknyandoro@gmail.com
+                            <a
+                                href="mailto:kknyandoro@alignedsurveyors.co.zw"
+                                className="header-color group-hover:text-white transition-colors break-all"
+                            >
+                                kknyandoro@alignedsurveyors.co.zw
+                            </a>
                         </p>
-                        <p className="text-sm header-color">
-                            +263 773 970 507
+                        <p className="text-sm header-color2 font-medium">
+                            <a
+                                href="mailto:kknyandoro@gmail.com"
+                                className="header-color group-hover:text-white transition-colors break-all"
+                            >
+                                kknyandoro@gmail.com
+                            </a>
                         </p>
+                        <p className="text-sm header-color">+263 773 970 507</p>
                     </div>
 
                     {/* Social Media Icons */}
@@ -149,8 +158,8 @@ export default function Footer() {
             </div>
 
             <div className="mt-12 pt-8 border-t border-gray-800 text-center text-xs header-color">
-                &copy; {new Date().getFullYear()} Aligned Surveyors (PVT)
-                LTD. All rights reserved.
+                &copy; {new Date().getFullYear()} Aligned Surveyors (PVT) LTD.
+                All rights reserved.
             </div>
         </footer>
     );
