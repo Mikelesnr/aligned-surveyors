@@ -60,8 +60,12 @@ COPY . .
 # COPY THE COMPILED REACT ASSETS FROM STAGE 1
 COPY --from=frontend-builder /app/public/build ./public/build
 
-# 1. Force-create resources/views and system directories to guarantee they exist
-RUN mkdir -p storage bootstrap/cache resources/views
+# 1. Force-create resources/views and ALL storage/framework subpaths that
+#    .dockerignore strips out of the build context (views, sessions, cache)
+#    -- config('view.compiled') uses realpath() on storage/framework/views,
+#    which returns false (not an error) if the dir doesn't exist yet, so
+#    this has to happen before any config/view cache command runs.
+RUN mkdir -p storage/framework/{sessions,views,cache/data} storage/app/public storage/logs bootstrap/cache resources/views
 
 # 2. Grab the latest Composer binary
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
@@ -73,9 +77,10 @@ RUN chown -R www-data:www-data /var/www \
 # 4. Install dependencies WITHOUT running automated scripts or hooks
 RUN composer install --no-dev --no-scripts --optimize-autoloader --no-interaction --no-progress
 
-# 5. Build production optimizations safely (Avoids the breaking view-clear during image assembly)
+# 5. Build production optimizations safely
 RUN php artisan config:cache \
-    && php artisan route:cache
+    && php artisan route:cache \
+    && php artisan view:cache
 
 # 6. Finalize background autoload mappings
 RUN composer dump-autoload --optimize
