@@ -1,4 +1,4 @@
-const CACHE_NAME = "aligned-surveyors-v2";
+const CACHE_NAME = "aligned-surveyors-v3";
 
 self.addEventListener("install", (event) => {
     event.waitUntil(
@@ -28,6 +28,14 @@ self.addEventListener("activate", (event) => {
 });
 
 self.addEventListener("fetch", (event) => {
+    // Service workers should never intercept non-GET requests (POST/PUT/PATCH/DELETE).
+    // Re-fetching event.request for a request with a body (e.g. a login form POST)
+    // throws "Failed to fetch" because the body stream is already consumed by the
+    // time it reaches here. Let the browser handle all non-GET traffic natively.
+    if (event.request.method !== "GET") {
+        return;
+    }
+
     const url = new URL(event.request.url);
 
     // 1. CHATBOT SAFETY: Always Network-First for API
