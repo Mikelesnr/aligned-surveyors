@@ -5,11 +5,9 @@ FROM node:20-alpine AS frontend-builder
 
 WORKDIR /app
 
-# Copy package files first to leverage Docker layer caching
 COPY package*.json ./
 RUN npm install --legacy-peer-deps
 
-# Copy the rest of the application files and compile the production build
 COPY . .
 RUN npm run build
 
@@ -18,7 +16,6 @@ RUN npm run build
 # =====================================================================
 FROM php:8.3-fpm-alpine
 
-# Install system dependencies, Nginx, Supervisor, and database client headers
 RUN apk add --no-cache \
     nginx \
     supervisor \
@@ -35,7 +32,6 @@ RUN apk add --no-cache \
     linux-headers \
     postgresql-dev
 
-# Configure and install all required PHP extensions for Laravel, Reverb, MySQL, and PostgreSQL
 RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-install -j$(nproc) \
         pdo_mysql \
@@ -49,48 +45,45 @@ RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
         intl \
         opcache
 
-# Apply the optimized production PHP settings configuration
 RUN cp "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
 
 WORKDIR /var/www
 
-# Copy the core application files
 COPY . .
 
-# COPY THE COMPILED REACT ASSETS FROM STAGE 1
 COPY --from=frontend-builder /app/public/build ./public/build
 
 # 1. Force-create resources/views and ALL storage/framework subpaths that
-#    .dockerignore strips out of the build context (views, sessions, cache)
-#    -- config('view.compiled') uses realpath() on storage/framework/views,
-#    which returns false (not an error) if the dir doesn't exist yet, so
-#    this has to happen before any config/view cache command runs.
-RUN mkdir -p storage/framework/{sessions,views,cache/data} storage/app/public storage/logs bootstrap/cache resources/views
+#    .dockerignore strips out of the build context (views, sessions, cache).
+#    config('view.compiled') uses realpath() on storage/framework/views,
+#    which silently returns false (not an error) if the dir is missing,
+#    so this must run before any config/view cache command.
+#    NOTE: no brace expansion -- /bin/sh in alpine (ash) doesn't support it.
+RUN mkdir -p storage/framework/sessions \
+    && mkdir -p storage/framework/views \
+    && mkdir -p storage/framework/cache/data \
+    && mkdir -p storage/app/public \
+    && mkdir -p storage/logs \
+    && mkdir -p bootstrap/cache \
+    && mkdir -p resources/views
 
-# 2. Grab the latest Composer binary
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-# 3. Explicitly set permissions BEFORE running optimizations so the user context matches
 RUN chown -R www-data:www-data /var/www \
     && chmod -R 775 storage bootstrap/cache
 
-# 4. Install dependencies WITHOUT running automated scripts or hooks
 RUN composer install --no-dev --no-scripts --optimize-autoloader --no-interaction --no-progress
 
-# 5. Build production optimizations safely
 RUN php artisan config:cache \
     && php artisan route:cache \
     && php artisan view:cache
 
-# 6. Finalize background autoload mappings
 RUN composer dump-autoload --optimize
 
-# Copy structural infrastructure configuration files into place
 COPY ./docker/nginx.conf /etc/nginx/http.d/default.conf
 COPY ./docker/supervisor.conf /etc/supervisor/conf.d/supervisord.conf
 COPY ./docker/entrypoint.sh /usr/local/bin/entrypoint.sh
 
-# Grant execution permissions to the runtime entrypoint script
 RUN chmod +x /usr/local/bin/entrypoint.sh
 
 EXPOSE 8080
